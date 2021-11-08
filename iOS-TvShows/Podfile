@@ -6,7 +6,9 @@ target 'iOS-TvShows' do
   use_frameworks!
 
   # Pods for iOS-TvShows
-  pod "Alamofire"
-  pod "Kingfisher"
-  pod "KeychainAccess"
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'Alamofire'
+  pod 'Kingfisher'
+  pod 'KeychainAccess'
 end
