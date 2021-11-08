@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AFED65222A876ABF714B8201 /* Pods_iOS_TvShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15045DC8224C4CE5B50F8BEC /* Pods_iOS_TvShows.framework */; };
 		B6BE823F27391EF4000C38E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BE823E27391EF4000C38E9 /* AppDelegate.swift */; };
 		B6BE824127391EF4000C38E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BE824027391EF4000C38E9 /* SceneDelegate.swift */; };
 		B6BE824327391EF4000C38E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BE824227391EF4000C38E9 /* ViewController.swift */; };
@@ -15,6 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15045DC8224C4CE5B50F8BEC /* Pods_iOS_TvShows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_TvShows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EA1561A71DEA0C945D5C561 /* Pods-iOS-TvShows.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-TvShows.debug.xcconfig"; path = "Target Support Files/Pods-iOS-TvShows/Pods-iOS-TvShows.debug.xcconfig"; sourceTree = "<group>"; };
+		80FD8EDB93E97C2996CF93D1 /* Pods-iOS-TvShows.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-TvShows.release.xcconfig"; path = "Target Support Files/Pods-iOS-TvShows/Pods-iOS-TvShows.release.xcconfig"; sourceTree = "<group>"; };
 		B6BE823B27391EF4000C38E9 /* iOS-TvShows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-TvShows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6BE823E27391EF4000C38E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6BE824027391EF4000C38E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,17 +33,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFED65222A876ABF714B8201 /* Pods_iOS_TvShows.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21BB94973E1428483CD17A42 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				15045DC8224C4CE5B50F8BEC /* Pods_iOS_TvShows.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		437EB7DC3D0EDE3B62046C4B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3EA1561A71DEA0C945D5C561 /* Pods-iOS-TvShows.debug.xcconfig */,
+				80FD8EDB93E97C2996CF93D1 /* Pods-iOS-TvShows.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B6BE823227391EF4000C38E9 = {
 			isa = PBXGroup;
 			children = (
 				B6BE823D27391EF4000C38E9 /* iOS-TvShows */,
 				B6BE823C27391EF4000C38E9 /* Products */,
+				437EB7DC3D0EDE3B62046C4B /* Pods */,
+				21BB94973E1428483CD17A42 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6BE824F27391EF6000C38E9 /* Build configuration list for PBXNativeTarget "iOS-TvShows" */;
 			buildPhases = (
+				0DB902B88795DF92575B9F83 /* [CP] Check Pods Manifest.lock */,
 				B6BE823727391EF4000C38E9 /* Sources */,
 				B6BE823827391EF4000C38E9 /* Frameworks */,
 				B6BE823927391EF4000C38E9 /* Resources */,
+				D42D21CFE36760A64ECDF94F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -127,6 +153,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0DB902B88795DF92575B9F83 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iOS-TvShows-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D42D21CFE36760A64ECDF94F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOS-TvShows/Pods-iOS-TvShows-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOS-TvShows/Pods-iOS-TvShows-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iOS-TvShows/Pods-iOS-TvShows-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B6BE823727391EF4000C38E9 /* Sources */ = {
@@ -271,6 +339,7 @@
 		};
 		B6BE825027391EF6000C38E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3EA1561A71DEA0C945D5C561 /* Pods-iOS-TvShows.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -291,6 +360,7 @@
 		};
 		B6BE825127391EF6000C38E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80FD8EDB93E97C2996CF93D1 /* Pods-iOS-TvShows.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
