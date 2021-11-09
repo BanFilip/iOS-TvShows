@@ -23,6 +23,8 @@ protocol LoginPresenterInterface: PresenterInterface {
 }
 
 protocol LoginInteractorInterface: InteractorInterface {
+    func login(email: String, password: String, shouldRemember: Bool) -> Completable
+    func register(email: String, password: String, shouldRemember: Bool) -> Completable
 }
 
 enum Login {
