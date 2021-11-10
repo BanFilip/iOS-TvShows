@@ -28,7 +28,6 @@ final class LoginViewController: KeyboardViewController {
     var rememberButton: RememberButton!
     var loginButton: SecondaryButton!
     var registerButton: PrimaryButton!
-    var nk: UIView!
 
     var presenter: LoginPresenterInterface!
 
