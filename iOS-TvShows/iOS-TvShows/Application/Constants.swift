@@ -24,7 +24,10 @@ enum Constants {
         static let tokenType = "token-type"
         static let acceptFormat = "application/json"
         static let bearer = "Bearer"
-        static let contentType = "application/json"
+    }
+
+    enum Api {
+        static let baseUrl = "https://tv-shows.infinum.academy"
     }
 
 }

@@ -86,35 +86,35 @@ open class Router: Routable {
 
 /// Convenience initializers which can be used if you have a base URL.
 public extension Router {
-//    convenience init(
-//        path: String,
-//        method: HTTPMethod = .get,
-//        headers: HTTPHeaders? = nil,
-//        encodableParams: EncodableParams...
-//    ) {
-//        self.init(
-//            baseUrl: Constants.baseUrl,
-//            path: path,
-//            method: method,
-//            headers: headers,
-//            encodableParams: encodableParams
-//        )
-//    }
+    convenience init(
+        path: String,
+        method: HTTPMethod = .get,
+        headers: HTTPHeaders? = nil,
+        encodableParams: EncodableParams...
+    ) {
+        self.init(
+            baseUrl: Constants.Api.baseUrl,
+            path: path,
+            method: method,
+            headers: headers,
+            encodableParams: encodableParams
+        )
+    }
 
-//    convenience init(
-//        path: String,
-//        method: HTTPMethod = .get,
-//        headers: HTTPHeaders? = nil,
-//        parameters: Parameters? = nil,
-//        encoding: ParameterEncoding = URLEncoding.default
-//    ) {
-//        self.init(
-//            baseUrl: Constants.baseUrl,
-//            path: path,
-//            method: method,
-//            headers: headers,
-//            parameters: parameters,
-//            encoding: encoding
-//        )
-//    }
+    convenience init(
+        path: String,
+        method: HTTPMethod = .get,
+        headers: HTTPHeaders? = nil,
+        parameters: Parameters? = nil,
+        encoding: ParameterEncoding = URLEncoding.default
+    ) {
+        self.init(
+            baseUrl: Constants.Api.baseUrl,
+            path: path,
+            method: method,
+            headers: headers,
+            parameters: parameters,
+            encoding: encoding
+        )
+    }
 }

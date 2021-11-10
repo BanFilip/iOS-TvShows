@@ -14,14 +14,12 @@ struct AuthInfo: Codable {
     let client: String?
     let expiry: String?
     let tokenType: String?
-    let contentType: String?
 
     init(from response: HTTPURLResponse) {
-        uid = response.headers.dictionary["uid"]
-        accessToken = response.headers.dictionary["access-token"]
-        client = response.headers.dictionary["client"]
-        expiry = response.headers.dictionary["expiry"]
-        tokenType = response.headers.dictionary["token-type"]
-        contentType = response.headers.dictionary["Content-Type"]
+        uid = response.headers.dictionary[Constants.RequestInterceptor.uid]
+        accessToken = response.headers.dictionary[Constants.RequestInterceptor.accessToken]
+        client = response.headers.dictionary[Constants.RequestInterceptor.client]
+        expiry = response.headers.dictionary[Constants.RequestInterceptor.expiry]
+        tokenType = response.headers.dictionary[Constants.RequestInterceptor.tokenType]
     }
 }
