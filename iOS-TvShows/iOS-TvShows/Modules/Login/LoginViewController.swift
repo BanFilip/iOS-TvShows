@@ -11,8 +11,9 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import IQKeyboardManagerSwift
 
-final class LoginViewController: UIViewController {
+final class LoginViewController: KeyboardViewController {
 
     // MARK: - Public properties -
 
@@ -22,14 +23,12 @@ final class LoginViewController: UIViewController {
     var imageView: UIImageView!
     var loginLabel: UILabel!
     var helperLabel: UILabel!
-    var emailTextField: UITextField!
-    var firstSeparator: UIView!
-    var passwordTextField: UITextField!
-    var visibilityButton: UIButton!
-    var secondSeparator: UIView!
-    var rememberButton: UIButton!
-    var loginButton: UIButton!
-    var registerButton: UIButton!
+    var emailInputView: CustomInputView!
+    var passwordInputView: CustomInputView!
+    var rememberButton: RememberButton!
+    var loginButton: SecondaryButton!
+    var registerButton: PrimaryButton!
+    var nk: UIView!
 
     var presenter: LoginPresenterInterface!
 
@@ -43,6 +42,11 @@ final class LoginViewController: UIViewController {
         super.viewDidLoad()
         buildViews()
         setupView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.shared.toolbarPreviousNextAllowedClasses = [UIStackView.self]
     }
 }
 
