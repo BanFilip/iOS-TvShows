@@ -16,6 +16,21 @@ final class LoginViewController: UIViewController {
 
     // MARK: - Public properties -
 
+    var scrollView: UIScrollView!
+    var contentView: UIView!
+    var stackView: UIStackView!
+    var imageView: UIImageView!
+    var loginLabel: UILabel!
+    var helperLabel: UILabel!
+    var emailTextField: UITextField!
+    var firstSeparator: UIView!
+    var passwordTextField: UITextField!
+    var visibilityButton: UIButton!
+    var secondSeparator: UIView!
+    var rememberButton: UIButton!
+    var loginButton: UIButton!
+    var registerButton: UIButton!
+
     var presenter: LoginPresenterInterface!
 
     // MARK: - Private properties -
@@ -26,9 +41,9 @@ final class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        buildViews()
         setupView()
     }
-
 }
 
 // MARK: - Extensions -
@@ -43,5 +58,4 @@ private extension LoginViewController {
 
         let input = presenter.configure(with: output)
     }
-
 }
