@@ -210,13 +210,13 @@
 		B6E71C482739495B009123A3 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				B6E71C712739640D009123A3 /* DecodableAlamofire */,
-				B6E71C6927395167009123A3 /* Authentication */,
 				B6E71C6427394FBE009123A3 /* Adapters */,
-				B6E71C5727394B25009123A3 /* Rx */,
-				B6E71C5427394B12009123A3 /* Service */,
+				B6E71C6927395167009123A3 /* Authentication */,
+				B6E71C712739640D009123A3 /* DecodableAlamofire */,
 				B6E71C4C2739499B009123A3 /* Encoding */,
 				B6E71C4927394967009123A3 /* Router */,
+				B6E71C5727394B25009123A3 /* Rx */,
+				B6E71C5427394B12009123A3 /* Service */,
 				B6E71C5127394A86009123A3 /* SessionManager */,
 			);
 			path = Networking;

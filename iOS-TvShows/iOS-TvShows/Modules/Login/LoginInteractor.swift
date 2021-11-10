@@ -43,7 +43,6 @@ extension LoginInteractor: LoginInteractorInterface {
     private func handle(router: Routable,_ shouldRemember: Bool) -> Completable {
         service.rx
             .requestResponse(
-                Data.self,
                 router: router,
                 session: sessionManager.session
             )

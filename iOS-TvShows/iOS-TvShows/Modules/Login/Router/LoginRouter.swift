@@ -10,20 +10,15 @@ import Alamofire
 
 class LoginRouter: Router {
 
-    static let baseUrl = "https://tv-shows.infinum.academy"
-    static let usersPath = "/users"
-
     static func login(email: String, password: String) -> LoginRouter {
         let params = [
             "email": email,
             "password": password
         ]
         return LoginRouter(
-            baseUrl: baseUrl,
-            path: "\(usersPath)/sign_in",
+            path: "/users/sign_in",
             method: .post,
-            parameters: params,
-            encoding: JSONEncoding.default
+            parameters: params
         )
     }
 
@@ -33,11 +28,9 @@ class LoginRouter: Router {
             "password": password
         ]
         return LoginRouter(
-            baseUrl: baseUrl,
-            path: usersPath,
+            path: "/users",
             method: .post,
-            parameters: params,
-            encoding: JSONEncoding.default
+            parameters: params
         )
     }
 }

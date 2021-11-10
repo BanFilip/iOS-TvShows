@@ -13,15 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let initialViewController = UINavigationController()
+        let rootNavigationController = UINavigationController()
 
         window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = window else {
             return false
         }
 
-        initialViewController.setRootWireframe(LoginWireframe())
-        window.rootViewController = initialViewController
+        rootNavigationController.setRootWireframe(LoginWireframe())
+        window.rootViewController = rootNavigationController
         window.makeKeyAndVisible()
         return true
     }
