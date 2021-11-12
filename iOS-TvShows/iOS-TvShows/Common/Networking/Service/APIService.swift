@@ -29,6 +29,16 @@ public protocol APIServiceable: AnyObject {
     ) -> DataRequest
 
     @discardableResult
+    func requestResponse<T: Decodable>(
+        _: T.Type,
+        keyPath: String?,
+        decoder: JSONDecoder,
+        router: Routable,
+        session: Session,
+        completion: @escaping (AFDataResponse<T>) -> Void
+    ) -> DataRequest
+
+    @discardableResult
     func requestCompletion(
         router: Routable,
         session: Session,
@@ -68,13 +78,26 @@ open class APIService: APIServiceable {
     }
 
     @discardableResult
+    open func requestResponse<T: Decodable>(
+        _: T.Type,
+        keyPath: String? = nil,
+        decoder: JSONDecoder = JSONDecoder(),
+        router: Routable,
+        session: Session,
+        completion: @escaping (AFDataResponse<T>) -> Void
+    ) -> DataRequest {
+        return prepareRequest(for: router, session: session)
+            .responseDecodable(keyPath: keyPath, decoder: decoder) { completion($0) }
+    }
+
+    @discardableResult
     open func requestResponse(
         router: Routable,
         session: Session,
         completion: @escaping (AFDataResponse<Data?>) -> Void
     ) -> DataRequest {
         return prepareRequest(for: router, session: session)
-            .response { completion($0) }
+            .response(completionHandler: completion)
     }
 
     @discardableResult

@@ -93,7 +93,7 @@ public extension Router {
         encodableParams: EncodableParams...
     ) {
         self.init(
-            baseUrl: Constants.api.baseUrl,
+            baseUrl: Constants.Api.baseUrl,
             path: path,
             method: method,
             headers: headers,
@@ -109,7 +109,7 @@ public extension Router {
         encoding: ParameterEncoding = URLEncoding.default
     ) {
         self.init(
-            baseUrl: Constants.api.baseUrl,
+            baseUrl: Constants.Api.baseUrl,
             path: path,
             method: method,
             headers: headers,

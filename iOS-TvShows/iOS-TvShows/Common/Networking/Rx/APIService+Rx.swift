@@ -31,19 +31,39 @@ public extension Reactive where Base: APIServiceable {
         }
     }
 
-    func requestResponse(
-        router: Routable,
-        session: Session
-    ) -> Single<DataResponse<Data?, AFError>> {
-        return Single<DataResponse<Data?, AFError>>.create { [weak base] single -> Disposable in
-            let request = base?.requestResponse(
-                router: router,
-                session: session,
-                completion: { single(.success($0)) }
-            )
-            return Disposables.create { request?.cancel() }
+    func requestResponse<T: Decodable>(
+            _: T.Type,
+            keyPath: String? = nil,
+            decoder: JSONDecoder = JSONDecoder(),
+            router: Routable,
+            session: Session
+        ) -> Single<DataResponse<T, AFError>> {
+            return Single<DataResponse<T, AFError>> .create { [weak base] single -> Disposable in
+                let request = base?.requestResponse(
+                    T.self,
+                    keyPath: keyPath,
+                    decoder: decoder,
+                    router: router,
+                    session: session,
+                    completion: { single(.success($0)) }
+                )
+                return Disposables.create { request?.cancel() }
+            }
         }
-    }
+
+    func requestResponse(
+            router: Routable,
+            session: Session
+        ) -> Single<AFDataResponse<Data?>> {
+            return Single<AFDataResponse<Data?>> .create { [weak base] single -> Disposable in
+                let request = base?.requestResponse(
+                    router: router,
+                    session: session,
+                    completion: { single(.success($0)) }
+                )
+                return Disposables.create { request?.cancel() }
+            }
+        }
 
     func requestCompletion(
         router: Routable,
