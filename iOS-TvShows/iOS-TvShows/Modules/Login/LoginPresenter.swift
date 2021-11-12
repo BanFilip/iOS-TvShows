@@ -19,6 +19,7 @@ final class LoginPresenter {
     private unowned let view: LoginViewInterface
     private let interactor: LoginInteractorInterface
     private let wireframe: LoginWireframeInterface
+    private let disposeBag: DisposeBag
 
     // MARK: - Lifecycle -
 
@@ -30,6 +31,7 @@ final class LoginPresenter {
         self.view = view
         self.interactor = interactor
         self.wireframe = wireframe
+        disposeBag = DisposeBag()
     }
 }
 
@@ -38,7 +40,126 @@ final class LoginPresenter {
 extension LoginPresenter: LoginPresenterInterface {
 
     func configure(with output: Login.ViewOutput) -> Login.ViewInput {
-        return Login.ViewInput()
+        handle(
+            login: output.login,
+            output.email,
+            output.password,
+            output.shouldRemember
+        )
+        handle(register: output.register,
+               output.email,
+               output.password,
+               output.shouldRemember)
+        return Login.ViewInput(
+            areButtonsEnabled: handle(
+                handle(validateEmail: output.email),
+                handle(validatePassword: output.password)
+            ),
+            isEmailValid: handle(validateEmail: output.email),
+            isPasswordValid: handle(validatePassword: output.password)
+        )
+    }
+}
+
+private extension LoginPresenter {
+    func handle(
+        login: Signal<Void>,
+        _ email: Driver<String?>,
+        _ password: Driver<String?>,
+        _ shouldRemember: Driver<Bool>
+    ) {
+        let inputs = Driver.combineLatest(
+            email.compactMap { $0 },
+            password.compactMap { $0 },
+            shouldRemember
+        )
+        login
+            .withLatestFrom(inputs)
+            .flatMap { [unowned self] email, password, shouldRemember -> Driver<Void> in
+                performLogin(email, password, shouldRemember)
+            }
+            .drive(onNext: { [unowned self] _ in
+                view.hideSpinner()
+                wireframe.goToHome()
+            })
+            .disposed(by: disposeBag)
     }
 
+    func performLogin(_ email: String,_ password: String,_ shouldRemember: Bool) -> Driver<Void> {
+        interactor
+            .login(email, password, shouldRemember)
+            .do(onError: { [unowned self] error in
+                view.hideSpinner()
+                showValidationError(error)
+            }, onSubscribe: { [unowned view] in
+                view.showSpinner()
+            })
+            .asDriver(onErrorDriveWith: .empty())
+    }
+
+    func handle(
+        register: Signal<Void>,
+        _ email: Driver<String?>,
+        _ password: Driver<String?>,
+        _ shouldRemember: Driver<Bool>
+    ) {
+        let inputs = Driver.combineLatest(
+            email.compactMap { $0 },
+            password.compactMap { $0 },
+            shouldRemember
+        )
+        register
+            .withLatestFrom(inputs)
+            .flatMap { [unowned self] email, password, shouldRemember -> Driver<Void> in
+                performRegister(email, password, shouldRemember)
+            }
+            .drive(onNext: { [unowned self] _ in
+                view.hideSpinner()
+                wireframe.goToHome()
+            })
+            .disposed(by: disposeBag)
+    }
+
+    func performRegister(_ email: String,_ password: String,_ shouldRemember: Bool) -> Driver<Void> {
+        interactor
+            .register(email, password, shouldRemember)
+            .do(onError: { [unowned self] error in
+                view.hideSpinner()
+                showValidationError(error)
+            }, onSubscribe: { [unowned view] in
+                view.showSpinner()
+            })
+            .asDriver(onErrorDriveWith: .empty())
+    }
+
+    func handle(_ isEmailValid: Driver<Bool?>, _ isPasswordValid: Driver<Bool?>) -> Driver<Bool> {
+        Driver.combineLatest(
+            isEmailValid.compactMap { $0 },
+            isPasswordValid.compactMap { $0 }
+        )
+        .map { $0.0 && $0.1 }
+        .startWith(false)
+    }
+
+    func handle(validateEmail email: Driver<String?>) -> Driver<Bool?> {
+        email
+            .debounce(.seconds(1))
+            .compactMap { $0 }
+            .filter { !$0.isEmpty }
+            .map { $0.isEmailValid }
+    }
+
+    func handle(validatePassword password: Driver<String?>) -> Driver<Bool?> {
+        password
+            .debounce(.seconds(1))
+            .compactMap { $0 }
+            .filter { !$0.isEmpty }
+            .map { $0.isPasswordValid }
+    }
+}
+
+private extension LoginPresenter {
+    func showValidationError(_ error: Error) {
+        wireframe.showAlert(with: "Error", message: error.localizedDescription)
+    }
 }

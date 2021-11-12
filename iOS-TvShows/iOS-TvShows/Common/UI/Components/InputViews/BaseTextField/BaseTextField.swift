@@ -32,7 +32,7 @@ class BaseTextField: UITextField {
         }
     }
 
-    private let padding: UIEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 12, right: 38)
+    private let padding: UIEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 38)
 
     private var button: UIButton!
 

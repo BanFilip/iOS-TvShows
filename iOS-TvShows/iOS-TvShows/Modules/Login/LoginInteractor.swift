@@ -32,15 +32,15 @@ final class LoginInteractor {
 
 extension LoginInteractor: LoginInteractorInterface {
 
-    func login(email: String, password: String, shouldRemember: Bool) -> Completable {
+    func login(_ email: String, _ password: String, _ shouldRemember: Bool) -> Single<Void> {
         handle(router: LoginRouter.login(email: email, password: password), shouldRemember)
     }
 
-    func register(email: String, password: String, shouldRemember: Bool) -> Completable {
+    func register(_ email: String, _ password: String, _ shouldRemember: Bool) -> Single<Void> {
         handle(router: LoginRouter.register(email: email, password: password), shouldRemember)
     }
 
-    private func handle(router: Routable,_ shouldRemember: Bool) -> Completable {
+    private func handle(router: Routable,_ shouldRemember: Bool) -> Single<Void> {
         service.rx
             .requestResponse(
                 router: router,
@@ -60,7 +60,7 @@ extension LoginInteractor: LoginInteractorInterface {
                 }
                 self.sessionManager.authorizationAdapter = AuthAdapter(with: authInfo)
             })
-            .asCompletable()
+            .map { _ in () }
     }
 }
   

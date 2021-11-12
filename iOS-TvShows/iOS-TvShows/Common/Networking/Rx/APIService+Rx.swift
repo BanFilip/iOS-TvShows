@@ -39,7 +39,12 @@ public extension Reactive where Base: APIServiceable {
             let request = base?.requestResponse(
                 router: router,
                 session: session,
-                completion: { single(.success($0)) }
+                completion: { response in
+                    if let error = response.error {
+                        return single(.failure(error))
+                    }
+                    return single(.success(response))
+                }
             )
             return Disposables.create { request?.cancel() }
         }

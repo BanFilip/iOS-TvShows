@@ -13,9 +13,12 @@ import RxSwift
 import RxCocoa
 
 protocol LoginWireframeInterface: WireframeInterface {
+    func goToHome()
 }
 
 protocol LoginViewInterface: ViewInterface {
+    func showSpinner()
+    func hideSpinner()
 }
 
 protocol LoginPresenterInterface: PresenterInterface {
@@ -23,16 +26,23 @@ protocol LoginPresenterInterface: PresenterInterface {
 }
 
 protocol LoginInteractorInterface: InteractorInterface {
-    func login(email: String, password: String, shouldRemember: Bool) -> Completable
-    func register(email: String, password: String, shouldRemember: Bool) -> Completable
+    func login(_ email: String, _ password: String, _ shouldRemember: Bool) -> Single<Void>
+    func register(_ email: String, _ password: String, _ shouldRemember: Bool) -> Single<Void>
 }
 
 enum Login {
 
     struct ViewOutput {
+        let email: Driver<String?>
+        let password: Driver<String?>
+        let shouldRemember: Driver<Bool>
+        let login: Signal<Void>
+        let register: Signal<Void>
     }
 
     struct ViewInput {
+        let areButtonsEnabled: Driver<Bool>
+        let isEmailValid: Driver<Bool?>
+        let isPasswordValid: Driver<Bool?>
     }
-
 }

@@ -13,4 +13,5 @@ target 'iOS-TvShows' do
   pod 'KeychainAccess'
   pod 'SnapKit'
   pod 'IQKeyboardManagerSwift'
+  pod 'SVProgressHUD'
 end
