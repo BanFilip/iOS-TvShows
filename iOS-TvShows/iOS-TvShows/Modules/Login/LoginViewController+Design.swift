@@ -41,7 +41,7 @@ extension LoginViewController: ConstructViewsProtocol {
         passwordInputView = CustomInputView(type: .password)
         stackView.addArrangedSubview(passwordInputView)
 
-        rememberButton = UIButton()
+        rememberButton = RememberButton()
         stackView.addArrangedSubview(rememberButton)
 
         loginButton = SecondaryButton()
@@ -75,18 +75,10 @@ extension LoginViewController: ConstructViewsProtocol {
         helperLabel.textColor = .appWhite
 
         emailInputView.placeholder = "Email"
-        emailInputView.errorLabel.text = "Email format is not correct."
 
         passwordInputView.placeholder = "Password"
-        passwordInputView.errorLabel.text = "Password must contain at least 6 characters."
 
         rememberButton.setTitle("Remember me", for: .normal)
-        rememberButton.setTitleColor(.appWhite, for: .normal)
-        rememberButton.titleLabel?.font = .body1
-        rememberButton.contentHorizontalAlignment = .leading
-        rememberButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-        rememberButton.setImage(UIImage(with: .checkboxUnselected), for: .normal)
-        rememberButton.setImage(UIImage(with: .checkboxSelected), for: .selected)
 
         loginButton.setTitle("Login", for: .normal)
 

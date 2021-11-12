@@ -32,7 +32,4 @@ final class LoginWireframe: BaseWireframe<LoginViewController> {
 // MARK: - Extensions -
 
 extension LoginWireframe: LoginWireframeInterface {
-    func goToHome() {
-        navigationController?.setRootWireframe(HomeWireframe())
-    }
 }

@@ -13,18 +13,8 @@ class CustomInputView: UIView {
 
     let type: TextFieldType
 
-    var stackView: UIStackView!
     var textField: BaseTextField!
     var separator: SeparatorView!
-    var errorLabel: UILabel!
-
-    var isValid: Bool = true {
-        didSet {
-            let separatorColor: UIColor = isValid ? .appWhite.withAlphaComponent(0.7) : .red
-            separator.backgroundColor = separatorColor
-            errorLabel.isHidden = isValid
-        }
-    }
 
     var placeholder: String? {
         didSet {
