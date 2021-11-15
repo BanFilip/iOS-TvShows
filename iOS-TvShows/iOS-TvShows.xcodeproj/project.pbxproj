@@ -35,7 +35,7 @@
 		B6B3861D273C600F00CFE02C /* KeyboardSubscriberInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B3861C273C600F00CFE02C /* KeyboardSubscriberInterface.swift */; };
 		B6B3861F273C603300CFE02C /* AppKeyboardServiceInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B3861E273C603300CFE02C /* AppKeyboardServiceInterface.swift */; };
 		B6B38621273C605900CFE02C /* AppKeyboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38620273C605900CFE02C /* AppKeyboardService.swift */; };
-		B6B38623273C621900CFE02C /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38622273C621900CFE02C /* KeyboardViewController.swift */; };
+		B6B38623273C621900CFE02C /* KeyboardViewControllerSubscriberInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38622273C621900CFE02C /* KeyboardViewControllerSubscriberInterface.swift */; };
 		B6BE823F27391EF4000C38E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BE823E27391EF4000C38E9 /* AppDelegate.swift */; };
 		B6BE824827391EF6000C38E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6BE824727391EF6000C38E9 /* Assets.xcassets */; };
 		B6BE824B27391EF6000C38E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6BE824927391EF6000C38E9 /* LaunchScreen.storyboard */; };
@@ -99,7 +99,7 @@
 		B6B3861C273C600F00CFE02C /* KeyboardSubscriberInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSubscriberInterface.swift; sourceTree = "<group>"; };
 		B6B3861E273C603300CFE02C /* AppKeyboardServiceInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKeyboardServiceInterface.swift; sourceTree = "<group>"; };
 		B6B38620273C605900CFE02C /* AppKeyboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKeyboardService.swift; sourceTree = "<group>"; };
-		B6B38622273C621900CFE02C /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		B6B38622273C621900CFE02C /* KeyboardViewControllerSubscriberInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewControllerSubscriberInterface.swift; sourceTree = "<group>"; };
 		B6BE823B27391EF4000C38E9 /* iOS-TvShows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-TvShows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6BE823E27391EF4000C38E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6BE824727391EF6000C38E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -272,7 +272,7 @@
 				B6B38620273C605900CFE02C /* AppKeyboardService.swift */,
 				B6B3861E273C603300CFE02C /* AppKeyboardServiceInterface.swift */,
 				B6B3861C273C600F00CFE02C /* KeyboardSubscriberInterface.swift */,
-				B6B38622273C621900CFE02C /* KeyboardViewController.swift */,
+				B6B38622273C621900CFE02C /* KeyboardViewControllerSubscriberInterface.swift */,
 			);
 			path = AppKeyboardService;
 			sourceTree = "<group>";
@@ -663,7 +663,7 @@
 				B6E71C3E27393D70009123A3 /* LoginInteractor.swift in Sources */,
 				B6E71C6627394FC9009123A3 /* AuthAdapter.swift in Sources */,
 				B6E71C6B2739518A009123A3 /* AuthStorage.swift in Sources */,
-				B6B38623273C621900CFE02C /* KeyboardViewController.swift in Sources */,
+				B6B38623273C621900CFE02C /* KeyboardViewControllerSubscriberInterface.swift in Sources */,
 				B6E71C1E273936BF009123A3 /* BaseWireframe.swift in Sources */,
 				B6B38530273A955200CFE02C /* UINavigationController+Extensions.swift in Sources */,
 				B6B385F3273C3F3600CFE02C /* SecondaryButton.swift in Sources */,

@@ -9,10 +9,11 @@
 //
 
 import UIKit
+import SnapKit
 import RxSwift
 import RxCocoa
 
-final class LoginViewController: KeyboardViewController {
+final class LoginViewController: UIViewController, KeyboardViewControllerSubscriberInterface {
 
     // MARK: - Public properties -
 
@@ -27,6 +28,8 @@ final class LoginViewController: KeyboardViewController {
     var rememberButton: RememberButton!
     var loginButton: SecondaryButton!
     var registerButton: PrimaryButton!
+
+    var bottomConstraint: Constraint?
 
     var presenter: LoginPresenterInterface!
 
@@ -45,6 +48,7 @@ final class LoginViewController: KeyboardViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.hideNavigationBar(animated)
+        AppKeyboardService.instance.subscribe(subscriber: self)
     }
 }
 

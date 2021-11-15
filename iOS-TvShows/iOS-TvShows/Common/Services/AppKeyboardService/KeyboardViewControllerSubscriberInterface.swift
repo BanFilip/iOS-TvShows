@@ -8,20 +8,14 @@
 import UIKit
 import SnapKit
 
-class KeyboardViewController: UIViewController, KeyboardSubscriberInterface {
+protocol KeyboardViewControllerSubscriberInterface: KeyboardSubscriberInterface {
+    var bottomConstraint: Constraint? { get }
+}
 
-    let id: String = UUID().uuidString
+extension KeyboardViewControllerSubscriberInterface where Self: UIViewController {
 
-    var bottomConstraint: Constraint?
-
-    weak var appKeyboardService = AppKeyboardService.instance
-
-    convenience init(appKeyboardService: AppKeyboardServiceInterface) {
-        self.init()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        appKeyboardService?.subscribe(subscriber: self)
+    var id: String {
+        UUID().uuidString
     }
 
     func onKeyboardFrameChanged(
@@ -40,10 +34,6 @@ class KeyboardViewController: UIViewController, KeyboardSubscriberInterface {
         UIView.animate(withDuration: animationDuration) { [weak self] in
             self?.view.layoutIfNeeded()
         }
-    }
-
-    deinit {
-        appKeyboardService?.unsubscribe(subscriber: self)
     }
 }
 
