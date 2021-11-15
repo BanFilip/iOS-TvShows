@@ -52,7 +52,6 @@ extension LoginViewController: ConstructViewsProtocol {
     }
 
     func styleViews() {
-        hideNavigationBar()
         view.backgroundColor = UIColor(patternImage: UIImage(with: .loginBackgroundImage))
         view.addGestureRecognizer(UITapGestureRecognizer(
                                     target: view,

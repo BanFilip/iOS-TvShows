@@ -41,6 +41,11 @@ final class LoginViewController: KeyboardViewController {
         buildViews()
         setupView()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.hideNavigationBar(animated)
+    }
 }
 
 // MARK: - Extensions -

@@ -13,7 +13,7 @@
 		B6B38529273A923600CFE02C /* ConstructViewsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38528273A923600CFE02C /* ConstructViewsProtocol.swift */; };
 		B6B3852C273A94A700CFE02C /* BundleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B3852B273A94A700CFE02C /* BundleImage.swift */; };
 		B6B3852E273A94EE00CFE02C /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B3852D273A94EE00CFE02C /* UIImage+Extensions.swift */; };
-		B6B38530273A955200CFE02C /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B3852F273A955200CFE02C /* UIViewController+Extensions.swift */; };
+		B6B38530273A955200CFE02C /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B3852F273A955200CFE02C /* UINavigationController+Extensions.swift */; };
 		B6B38532273A958D00CFE02C /* UINavigationBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38531273A958D00CFE02C /* UINavigationBar+Extensions.swift */; };
 		B6B3854D273A992F00CFE02C /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B3854C273A992F00CFE02C /* UILabel+Extensions.swift */; };
 		B6B3855D273AAC2B00CFE02C /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B3855C273AAC2B00CFE02C /* UIView+Extensions.swift */; };
@@ -77,7 +77,7 @@
 		B6B38528273A923600CFE02C /* ConstructViewsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructViewsProtocol.swift; sourceTree = "<group>"; };
 		B6B3852B273A94A700CFE02C /* BundleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleImage.swift; sourceTree = "<group>"; };
 		B6B3852D273A94EE00CFE02C /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
-		B6B3852F273A955200CFE02C /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		B6B3852F273A955200CFE02C /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		B6B38531273A958D00CFE02C /* UINavigationBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extensions.swift"; sourceTree = "<group>"; };
 		B6B3854C273A992F00CFE02C /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		B6B3855C273AAC2B00CFE02C /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
@@ -445,7 +445,7 @@
 				B6B3854C273A992F00CFE02C /* UILabel+Extensions.swift */,
 				B6B38531273A958D00CFE02C /* UINavigationBar+Extensions.swift */,
 				B6B3855C273AAC2B00CFE02C /* UIView+Extensions.swift */,
-				B6B3852F273A955200CFE02C /* UIViewController+Extensions.swift */,
+				B6B3852F273A955200CFE02C /* UINavigationController+Extensions.swift */,
 				B6B38523273A743300CFE02C /* URLRequest+Extensions.swift */,
 				B6E71C5B27394B76009123A3 /* Result */,
 			);
@@ -665,7 +665,7 @@
 				B6E71C6B2739518A009123A3 /* AuthStorage.swift in Sources */,
 				B6B38623273C621900CFE02C /* KeyboardViewController.swift in Sources */,
 				B6E71C1E273936BF009123A3 /* BaseWireframe.swift in Sources */,
-				B6B38530273A955200CFE02C /* UIViewController+Extensions.swift in Sources */,
+				B6B38530273A955200CFE02C /* UINavigationController+Extensions.swift in Sources */,
 				B6B385F3273C3F3600CFE02C /* SecondaryButton.swift in Sources */,
 				B6E71C21273936BF009123A3 /* PresenterInterface.swift in Sources */,
 				B6B38524273A743300CFE02C /* URLRequest+Extensions.swift in Sources */,
