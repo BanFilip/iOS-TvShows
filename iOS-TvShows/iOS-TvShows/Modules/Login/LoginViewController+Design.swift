@@ -93,7 +93,7 @@ extension LoginViewController: ConstructViewsProtocol {
     func defineLayoutForViews() {
         scrollView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            bottomConstraint = $0.bottom.equalTo(view.safeAreaLayoutGuide).constraint
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
 
         contentView.snp.makeConstraints {

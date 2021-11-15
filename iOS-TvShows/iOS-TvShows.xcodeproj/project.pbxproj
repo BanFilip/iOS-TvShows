@@ -28,16 +28,13 @@
 		B6B38614273C4C4100CFE02C /* CustomInputView+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38613273C4C4100CFE02C /* CustomInputView+Design.swift */; };
 		B6B38617273C4C9A00CFE02C /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38616273C4C9A00CFE02C /* BaseTextField.swift */; };
 		B6B38619273C4F0C00CFE02C /* BaseTextField+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38618273C4F0C00CFE02C /* BaseTextField+Design.swift */; };
-		B6B3861D273C600F00CFE02C /* KeyboardSubscriberInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B3861C273C600F00CFE02C /* KeyboardSubscriberInterface.swift */; };
-		B6B3861F273C603300CFE02C /* AppKeyboardServiceInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B3861E273C603300CFE02C /* AppKeyboardServiceInterface.swift */; };
-		B6B38621273C605900CFE02C /* AppKeyboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38620273C605900CFE02C /* AppKeyboardService.swift */; };
-		B6B38623273C621900CFE02C /* KeyboardViewControllerSubscriberInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38622273C621900CFE02C /* KeyboardViewControllerSubscriberInterface.swift */; };
 		B6BE823F27391EF4000C38E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BE823E27391EF4000C38E9 /* AppDelegate.swift */; };
 		B6BE824B27391EF6000C38E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6BE824927391EF6000C38E9 /* LaunchScreen.storyboard */; };
 		B6C90E0F27428AEC00504E73 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6C90E0E27428AEC00504E73 /* Colors.xcassets */; };
 		B6C90E1127428AF200504E73 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6C90E1027428AF200504E73 /* Images.xcassets */; };
 		B6C90E1527428B0B00504E73 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C90E1327428B0B00504E73 /* UIColorExtension.swift */; };
 		B6C90E1627428B0B00504E73 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C90E1427428B0B00504E73 /* UIImageExtension.swift */; };
+		B6C90E1A27428DF700504E73 /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C90E1927428DF700504E73 /* KeyboardHandler.swift */; };
 		B6E71C1E273936BF009123A3 /* BaseWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C18273936BF009123A3 /* BaseWireframe.swift */; };
 		B6E71C1F273936BF009123A3 /* FormatterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C19273936BF009123A3 /* FormatterInterface.swift */; };
 		B6E71C20273936BF009123A3 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C1A273936BF009123A3 /* UIStoryboardExtension.swift */; };
@@ -90,10 +87,6 @@
 		B6B38613273C4C4100CFE02C /* CustomInputView+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomInputView+Design.swift"; sourceTree = "<group>"; };
 		B6B38616273C4C9A00CFE02C /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
 		B6B38618273C4F0C00CFE02C /* BaseTextField+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseTextField+Design.swift"; sourceTree = "<group>"; };
-		B6B3861C273C600F00CFE02C /* KeyboardSubscriberInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSubscriberInterface.swift; sourceTree = "<group>"; };
-		B6B3861E273C603300CFE02C /* AppKeyboardServiceInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKeyboardServiceInterface.swift; sourceTree = "<group>"; };
-		B6B38620273C605900CFE02C /* AppKeyboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKeyboardService.swift; sourceTree = "<group>"; };
-		B6B38622273C621900CFE02C /* KeyboardViewControllerSubscriberInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewControllerSubscriberInterface.swift; sourceTree = "<group>"; };
 		B6BE823B27391EF4000C38E9 /* iOS-TvShows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-TvShows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6BE823E27391EF4000C38E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6BE824A27391EF6000C38E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -102,6 +95,7 @@
 		B6C90E1027428AF200504E73 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B6C90E1327428B0B00504E73 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		B6C90E1427428B0B00504E73 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		B6C90E1927428DF700504E73 /* KeyboardHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		B6E71C18273936BF009123A3 /* BaseWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWireframe.swift; sourceTree = "<group>"; };
 		B6E71C19273936BF009123A3 /* FormatterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterInterface.swift; sourceTree = "<group>"; };
 		B6E71C1A273936BF009123A3 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
@@ -238,20 +232,9 @@
 		B6B3861A273C5FE700CFE02C /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B6B3861B273C5FF300CFE02C /* AppKeyboardService */,
+				B6C90E1827428DF700504E73 /* KeyboardHandler */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		B6B3861B273C5FF300CFE02C /* AppKeyboardService */ = {
-			isa = PBXGroup;
-			children = (
-				B6B38620273C605900CFE02C /* AppKeyboardService.swift */,
-				B6B3861E273C603300CFE02C /* AppKeyboardServiceInterface.swift */,
-				B6B3861C273C600F00CFE02C /* KeyboardSubscriberInterface.swift */,
-				B6B38622273C621900CFE02C /* KeyboardViewControllerSubscriberInterface.swift */,
-			);
-			path = AppKeyboardService;
 			sourceTree = "<group>";
 		};
 		B6BE823227391EF4000C38E9 = {
@@ -291,6 +274,14 @@
 				B6C90E1427428B0B00504E73 /* UIImageExtension.swift */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		B6C90E1827428DF700504E73 /* KeyboardHandler */ = {
+			isa = PBXGroup;
+			children = (
+				B6C90E1927428DF700504E73 /* KeyboardHandler.swift */,
+			);
+			path = KeyboardHandler;
 			sourceTree = "<group>";
 		};
 		B6E71C24273936C7009123A3 /* Common */ = {
@@ -426,13 +417,13 @@
 		B6E71C5A27394B6E009123A3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B6C90E1227428B0B00504E73 /* Assets */,
 				B6B385F0273C3E9700CFE02C /* CGFloat+Extensions.swift */,
 				B6B3854C273A992F00CFE02C /* UILabel+Extensions.swift */,
 				B6B38531273A958D00CFE02C /* UINavigationBar+Extensions.swift */,
-				B6B3855C273AAC2B00CFE02C /* UIView+Extensions.swift */,
 				B6B3852F273A955200CFE02C /* UINavigationController+Extensions.swift */,
+				B6B3855C273AAC2B00CFE02C /* UIView+Extensions.swift */,
 				B6B38523273A743300CFE02C /* URLRequest+Extensions.swift */,
+				B6C90E1227428B0B00504E73 /* Assets */,
 				B6E71C5B27394B76009123A3 /* Result */,
 			);
 			path = Extensions;
@@ -606,16 +597,15 @@
 				B6B38529273A923600CFE02C /* ConstructViewsProtocol.swift in Sources */,
 				B6E71C5D27394B81009123A3 /* Result+Rx.swift in Sources */,
 				B6BE823F27391EF4000C38E9 /* AppDelegate.swift in Sources */,
+				B6C90E1A27428DF700504E73 /* KeyboardHandler.swift in Sources */,
 				B6E71C22273936BF009123A3 /* ViewInterface.swift in Sources */,
 				B6E71C70273952D3009123A3 /* AuthInfo.swift in Sources */,
-				B6B38621273C605900CFE02C /* AppKeyboardService.swift in Sources */,
 				B6B38617273C4C9A00CFE02C /* BaseTextField.swift in Sources */,
 				B6B385F1273C3E9700CFE02C /* CGFloat+Extensions.swift in Sources */,
 				B6E71C4E273949AC009123A3 /* EncodableParams.swift in Sources */,
 				B6E71C5327394A94009123A3 /* SessionManager.swift in Sources */,
 				B6B385F9273C433300CFE02C /* PrimaryButton.swift in Sources */,
 				B6B3854D273A992F00CFE02C /* UILabel+Extensions.swift in Sources */,
-				B6B3861D273C600F00CFE02C /* KeyboardSubscriberInterface.swift in Sources */,
 				B6E71C1F273936BF009123A3 /* FormatterInterface.swift in Sources */,
 				B6E71C682739501A009123A3 /* Constants.swift in Sources */,
 				B6B38610273C4BFD00CFE02C /* TextFieldType.swift in Sources */,
@@ -625,7 +615,6 @@
 				B6E71C7327396431009123A3 /* DataRequest+Decodable.swift in Sources */,
 				B6B385FF273C447A00CFE02C /* BaseButton+Design.swift in Sources */,
 				B6C90E1627428B0B00504E73 /* UIImageExtension.swift in Sources */,
-				B6B3861F273C603300CFE02C /* AppKeyboardServiceInterface.swift in Sources */,
 				B6B38619273C4F0C00CFE02C /* BaseTextField+Design.swift in Sources */,
 				B6B3860A273C49F500CFE02C /* SeparatorView+Design.swift in Sources */,
 				B6B3855D273AAC2B00CFE02C /* UIView+Extensions.swift in Sources */,
@@ -646,7 +635,6 @@
 				B6E71C3E27393D70009123A3 /* LoginInteractor.swift in Sources */,
 				B6E71C6627394FC9009123A3 /* AuthAdapter.swift in Sources */,
 				B6E71C6B2739518A009123A3 /* AuthStorage.swift in Sources */,
-				B6B38623273C621900CFE02C /* KeyboardViewControllerSubscriberInterface.swift in Sources */,
 				B6E71C1E273936BF009123A3 /* BaseWireframe.swift in Sources */,
 				B6B38530273A955200CFE02C /* UINavigationController+Extensions.swift in Sources */,
 				B6B385F3273C3F3600CFE02C /* SecondaryButton.swift in Sources */,
