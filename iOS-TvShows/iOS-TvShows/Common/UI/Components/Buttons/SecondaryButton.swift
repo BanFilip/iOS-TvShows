@@ -11,7 +11,7 @@ class SecondaryButton: BaseButton {
 
     override init() {
         super.init()
-        titleLabel?.font = .button1
+        titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .medium)
     }
 
     required public init?(coder: NSCoder) {

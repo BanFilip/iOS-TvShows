@@ -11,7 +11,7 @@ class PrimaryButton: BaseButton {
 
     override init() {
         super.init()
-        titleLabel?.font = .button2
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
     }
 
     required public init?(coder: NSCoder) {

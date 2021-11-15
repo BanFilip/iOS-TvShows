@@ -29,10 +29,10 @@ extension LoginViewController: ConstructViewsProtocol {
         imageView = UIImageView()
         stackView.addArrangedSubview(imageView)
 
-        loginLabel = UILabel(with: .header1)
+        loginLabel = UILabel(with: UIFont.boldSystemFont(ofSize: 34))
         stackView.addArrangedSubview(loginLabel)
 
-        helperLabel = UILabel(with: .body1)
+        helperLabel = UILabel(with: UIFont.systemFont(ofSize: 17))
         stackView.addArrangedSubview(helperLabel)
 
         emailInputView = CustomInputView(type: .email)

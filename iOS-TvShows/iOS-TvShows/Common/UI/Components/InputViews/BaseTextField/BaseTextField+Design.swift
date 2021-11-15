@@ -20,7 +20,7 @@ extension BaseTextField: ConstructViewsProtocol {
 
     func styleViews() {
         textColor = .appWhite
-        font = .body1
+        font = UIFont.systemFont(ofSize: 17)
     }
 
     func defineLayoutForViews() {
