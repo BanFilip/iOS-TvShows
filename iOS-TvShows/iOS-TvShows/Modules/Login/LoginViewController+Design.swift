@@ -41,7 +41,7 @@ extension LoginViewController: ConstructViewsProtocol {
         passwordInputView = CustomInputView(type: .password)
         stackView.addArrangedSubview(passwordInputView)
 
-        rememberButton = RememberButton()
+        rememberButton = UIButton()
         stackView.addArrangedSubview(rememberButton)
 
         loginButton = SecondaryButton()
@@ -52,7 +52,7 @@ extension LoginViewController: ConstructViewsProtocol {
     }
 
     func styleViews() {
-        view.backgroundColor = UIColor(patternImage: UIImage(with: .loginBackgroundImage))
+        view.backgroundColor = UIColor(patternImage: UIImage.TVShows.loginBackground)
         view.addGestureRecognizer(UITapGestureRecognizer(
                                     target: view,
                                     action: #selector(UIView.endEditing(_:))))
@@ -62,22 +62,28 @@ extension LoginViewController: ConstructViewsProtocol {
         stackView.axis = .vertical
         stackView.spacing = 20
 
-        imageView.image = UIImage(with: .logo)
+        imageView.image = UIImage.TVShows.logo
         imageView.contentMode = .scaleAspectFit
 
         loginLabel.text = "Login"
         loginLabel.textAlignment = .left
-        loginLabel.textColor = .appWhite
+        loginLabel.textColor = UIColor.TVShows.appWhite
 
         helperLabel.text = "In order to continue please log in."
         helperLabel.textAlignment = .left
-        helperLabel.textColor = .appWhite
+        helperLabel.textColor = UIColor.TVShows.appWhite
 
         emailInputView.placeholder = "Email"
 
         passwordInputView.placeholder = "Password"
 
         rememberButton.setTitle("Remember me", for: .normal)
+        rememberButton.setTitleColor(UIColor.TVShows.appWhite, for: .normal)
+        rememberButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        rememberButton.contentHorizontalAlignment = .leading
+        rememberButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+        rememberButton.setImage(UIImage.TVShows.Icons.icCheckboxSelected, for: .selected)
+        rememberButton.setImage(UIImage.TVShows.Icons.icCheckboxUnselected, for: .normal)
 
         loginButton.setTitle("Login", for: .normal)
 

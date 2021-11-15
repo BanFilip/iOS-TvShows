@@ -5,6 +5,8 @@
 //  Created by Filip Ban on 10.11.2021..
 //
 
+import UIKit
+
 extension SeparatorView: ConstructViewsProtocol {
 
     func buildViews() {
@@ -16,7 +18,7 @@ extension SeparatorView: ConstructViewsProtocol {
     }
 
     func styleViews() {
-        backgroundColor = .appWhite.withAlphaComponent(0.7)
+        backgroundColor = UIColor.TVShows.appWhite.withAlphaComponent(0.7)
     }
 
     func defineLayoutForViews() {

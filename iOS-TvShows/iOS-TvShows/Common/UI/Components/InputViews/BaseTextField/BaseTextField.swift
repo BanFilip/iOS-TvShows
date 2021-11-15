@@ -15,10 +15,10 @@ class BaseTextField: UITextField {
         didSet {
             guard button != nil else { return }
 
-            let bundleImage = isSecureTextEntry ?
-                UIImage(with: .invisible) :
-                UIImage(with: .visible)
-            button.setImage(bundleImage, for: .normal)
+            let image = isSecureTextEntry ?
+                UIImage.TVShows.Icons.icInvisible :
+                UIImage.TVShows.Icons.icVisible
+            button.setImage(image, for: .normal)
         }
     }
 
@@ -28,7 +28,9 @@ class BaseTextField: UITextField {
 
             attributedPlaceholder = NSAttributedString(
                 string: placeholder,
-                attributes: [NSAttributedString.Key.foregroundColor: UIColor.appWhite.withAlphaComponent(0.7)])
+                attributes: [
+                    NSAttributedString.Key.foregroundColor: UIColor.TVShows.appWhite.withAlphaComponent(0.7)
+                ])
         }
     }
 

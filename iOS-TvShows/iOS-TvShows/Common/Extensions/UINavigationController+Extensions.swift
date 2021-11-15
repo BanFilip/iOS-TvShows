@@ -22,7 +22,7 @@ extension UINavigationController {
 
     func showNavigationBar(leftOptionImage: UIImage? = nil) {
         setNavigationBarHidden(false, animated: true)
-        navigationBar.barTintColor = .appWhite
+        navigationBar.barTintColor = UIColor.TVShows.appWhite
         navigationBar.removeBottomBorder()
 
         if let leftOptionImage = leftOptionImage {

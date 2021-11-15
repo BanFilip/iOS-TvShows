@@ -19,7 +19,7 @@ extension BaseTextField: ConstructViewsProtocol {
     }
 
     func styleViews() {
-        textColor = .appWhite
+        textColor = UIColor.TVShows.appWhite
         font = UIFont.systemFont(ofSize: 17)
     }
 

@@ -25,7 +25,7 @@ final class LoginViewController: UIViewController, KeyboardViewControllerSubscri
     var helperLabel: UILabel!
     var emailInputView: CustomInputView!
     var passwordInputView: CustomInputView!
-    var rememberButton: RememberButton!
+    var rememberButton: UIButton!
     var loginButton: SecondaryButton!
     var registerButton: PrimaryButton!
 

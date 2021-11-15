@@ -19,8 +19,8 @@ class PrimaryButton: BaseButton {
     }
 
     override func styleEnabled() {
-        backgroundColor = .appPurple
-        setTitleColor(.appWhite, for: .normal)
+        backgroundColor = UIColor.TVShows.appPurple
+        setTitleColor(UIColor.TVShows.appWhite, for: .normal)
         alpha = .alphaEnabled
     }
 

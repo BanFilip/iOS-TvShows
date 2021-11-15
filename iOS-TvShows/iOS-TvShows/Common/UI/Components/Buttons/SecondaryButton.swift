@@ -19,13 +19,13 @@ class SecondaryButton: BaseButton {
     }
 
     override func styleEnabled() {
-        backgroundColor = .appWhite
-        setTitleColor(.appPurple, for: .normal)
+        backgroundColor = UIColor.TVShows.appWhite
+        setTitleColor(UIColor.TVShows.appPurple, for: .normal)
     }
 
     override func styleDisabled() {
-        backgroundColor = .appWhite.withAlphaComponent(0.3)
-        setTitleColor(.appWhite.withAlphaComponent(0.4), for: .normal)
+        backgroundColor = UIColor.TVShows.appWhite.withAlphaComponent(0.3)
+        setTitleColor(UIColor.TVShows.appWhite.withAlphaComponent(0.4), for: .normal)
     }
 }
 
