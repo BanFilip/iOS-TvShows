@@ -11,7 +11,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import IQKeyboardManagerSwift
 
 final class LoginViewController: KeyboardViewController {
 
@@ -41,11 +40,6 @@ final class LoginViewController: KeyboardViewController {
         super.viewDidLoad()
         buildViews()
         setupView()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        IQKeyboardManager.shared.toolbarPreviousNextAllowedClasses = [UIStackView.self]
     }
 }
 

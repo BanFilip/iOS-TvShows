@@ -12,5 +12,4 @@ target 'iOS-TvShows' do
   pod 'Kingfisher'
   pod 'KeychainAccess'
   pod 'SnapKit'
-  pod 'IQKeyboardManagerSwift'
 end
