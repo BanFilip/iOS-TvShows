@@ -11,4 +11,5 @@ target 'iOS-TvShows' do
   pod 'Alamofire'
   pod 'Kingfisher'
   pod 'KeychainAccess'
+  pod 'SnapKit'
 end
