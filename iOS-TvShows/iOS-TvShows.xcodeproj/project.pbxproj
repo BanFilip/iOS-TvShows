@@ -3,29 +3,79 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		AFED65222A876ABF714B8201 /* Pods_iOS_TvShows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15045DC8224C4CE5B50F8BEC /* Pods_iOS_TvShows.framework */; };
+		B6B38524273A743300CFE02C /* URLRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38523273A743300CFE02C /* URLRequest+Extensions.swift */; };
 		B6BE823F27391EF4000C38E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BE823E27391EF4000C38E9 /* AppDelegate.swift */; };
-		B6BE824127391EF4000C38E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BE824027391EF4000C38E9 /* SceneDelegate.swift */; };
-		B6BE824327391EF4000C38E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BE824227391EF4000C38E9 /* ViewController.swift */; };
 		B6BE824827391EF6000C38E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6BE824727391EF6000C38E9 /* Assets.xcassets */; };
 		B6BE824B27391EF6000C38E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6BE824927391EF6000C38E9 /* LaunchScreen.storyboard */; };
+		B6E71C1E273936BF009123A3 /* BaseWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C18273936BF009123A3 /* BaseWireframe.swift */; };
+		B6E71C1F273936BF009123A3 /* FormatterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C19273936BF009123A3 /* FormatterInterface.swift */; };
+		B6E71C20273936BF009123A3 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C1A273936BF009123A3 /* UIStoryboardExtension.swift */; };
+		B6E71C21273936BF009123A3 /* PresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C1B273936BF009123A3 /* PresenterInterface.swift */; };
+		B6E71C22273936BF009123A3 /* ViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C1C273936BF009123A3 /* ViewInterface.swift */; };
+		B6E71C23273936BF009123A3 /* InteractorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C1D273936BF009123A3 /* InteractorInterface.swift */; };
+		B6E71C3B27393D70009123A3 /* LoginInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C3627393D70009123A3 /* LoginInterfaces.swift */; };
+		B6E71C3C27393D70009123A3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C3727393D70009123A3 /* LoginPresenter.swift */; };
+		B6E71C3D27393D70009123A3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C3827393D70009123A3 /* LoginViewController.swift */; };
+		B6E71C3E27393D70009123A3 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C3927393D70009123A3 /* LoginInteractor.swift */; };
+		B6E71C3F27393D70009123A3 /* LoginWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C3A27393D70009123A3 /* LoginWireframe.swift */; };
+		B6E71C4B27394973009123A3 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C4A27394973009123A3 /* Routable.swift */; };
+		B6E71C4E273949AC009123A3 /* EncodableParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C4D273949AC009123A3 /* EncodableParams.swift */; };
+		B6E71C50273949D3009123A3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C4F273949D3009123A3 /* Router.swift */; };
+		B6E71C5327394A94009123A3 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C5227394A94009123A3 /* SessionManager.swift */; };
+		B6E71C5627394B1C009123A3 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C5527394B1C009123A3 /* APIService.swift */; };
+		B6E71C5927394B35009123A3 /* APIService+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C5827394B35009123A3 /* APIService+Rx.swift */; };
+		B6E71C5D27394B81009123A3 /* Result+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C5C27394B81009123A3 /* Result+Rx.swift */; };
+		B6E71C5F27394B90009123A3 /* Result+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C5E27394B90009123A3 /* Result+Map.swift */; };
+		B6E71C6227394CE9009123A3 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C6127394CE9009123A3 /* LoginRouter.swift */; };
+		B6E71C6627394FC9009123A3 /* AuthAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C6527394FC9009123A3 /* AuthAdapter.swift */; };
+		B6E71C682739501A009123A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C672739501A009123A3 /* Constants.swift */; };
+		B6E71C6B2739518A009123A3 /* AuthStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C6A2739518A009123A3 /* AuthStorage.swift */; };
+		B6E71C6D273951AA009123A3 /* AuthStorageInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C6C273951AA009123A3 /* AuthStorageInterface.swift */; };
+		B6E71C70273952D3009123A3 /* AuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C6F273952D3009123A3 /* AuthInfo.swift */; };
+		B6E71C7327396431009123A3 /* DataRequest+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C7227396431009123A3 /* DataRequest+Decodable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		15045DC8224C4CE5B50F8BEC /* Pods_iOS_TvShows.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_TvShows.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EA1561A71DEA0C945D5C561 /* Pods-iOS-TvShows.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-TvShows.debug.xcconfig"; path = "Target Support Files/Pods-iOS-TvShows/Pods-iOS-TvShows.debug.xcconfig"; sourceTree = "<group>"; };
 		80FD8EDB93E97C2996CF93D1 /* Pods-iOS-TvShows.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS-TvShows.release.xcconfig"; path = "Target Support Files/Pods-iOS-TvShows/Pods-iOS-TvShows.release.xcconfig"; sourceTree = "<group>"; };
+		B6B38523273A743300CFE02C /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extensions.swift"; sourceTree = "<group>"; };
 		B6BE823B27391EF4000C38E9 /* iOS-TvShows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-TvShows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6BE823E27391EF4000C38E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B6BE824027391EF4000C38E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B6BE824227391EF4000C38E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B6BE824727391EF6000C38E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6BE824A27391EF6000C38E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6BE824C27391EF6000C38E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6E71C18273936BF009123A3 /* BaseWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWireframe.swift; sourceTree = "<group>"; };
+		B6E71C19273936BF009123A3 /* FormatterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterInterface.swift; sourceTree = "<group>"; };
+		B6E71C1A273936BF009123A3 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
+		B6E71C1B273936BF009123A3 /* PresenterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterInterface.swift; sourceTree = "<group>"; };
+		B6E71C1C273936BF009123A3 /* ViewInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInterface.swift; sourceTree = "<group>"; };
+		B6E71C1D273936BF009123A3 /* InteractorInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorInterface.swift; sourceTree = "<group>"; };
+		B6E71C3627393D70009123A3 /* LoginInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInterfaces.swift; sourceTree = "<group>"; };
+		B6E71C3727393D70009123A3 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		B6E71C3827393D70009123A3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B6E71C3927393D70009123A3 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		B6E71C3A27393D70009123A3 /* LoginWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWireframe.swift; sourceTree = "<group>"; };
+		B6E71C4A27394973009123A3 /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
+		B6E71C4D273949AC009123A3 /* EncodableParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableParams.swift; sourceTree = "<group>"; };
+		B6E71C4F273949D3009123A3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		B6E71C5227394A94009123A3 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		B6E71C5527394B1C009123A3 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		B6E71C5827394B35009123A3 /* APIService+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIService+Rx.swift"; sourceTree = "<group>"; };
+		B6E71C5C27394B81009123A3 /* Result+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Rx.swift"; sourceTree = "<group>"; };
+		B6E71C5E27394B90009123A3 /* Result+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Map.swift"; sourceTree = "<group>"; };
+		B6E71C6127394CE9009123A3 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		B6E71C6527394FC9009123A3 /* AuthAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAdapter.swift; sourceTree = "<group>"; };
+		B6E71C672739501A009123A3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B6E71C6A2739518A009123A3 /* AuthStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStorage.swift; sourceTree = "<group>"; };
+		B6E71C6C273951AA009123A3 /* AuthStorageInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStorageInterface.swift; sourceTree = "<group>"; };
+		B6E71C6F273952D3009123A3 /* AuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfo.swift; sourceTree = "<group>"; };
+		B6E71C7227396431009123A3 /* DataRequest+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataRequest+Decodable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,14 +128,199 @@
 		B6BE823D27391EF4000C38E9 /* iOS-TvShows */ = {
 			isa = PBXGroup;
 			children = (
-				B6BE823E27391EF4000C38E9 /* AppDelegate.swift */,
-				B6BE824027391EF4000C38E9 /* SceneDelegate.swift */,
-				B6BE824227391EF4000C38E9 /* ViewController.swift */,
-				B6BE824727391EF6000C38E9 /* Assets.xcassets */,
-				B6BE824927391EF6000C38E9 /* LaunchScreen.storyboard */,
-				B6BE824C27391EF6000C38E9 /* Info.plist */,
+				B6E71C282739373F009123A3 /* Application */,
+				B6E71C24273936C7009123A3 /* Common */,
+				B6E71C3527393D63009123A3 /* Modules */,
+				B6E71C2627393714009123A3 /* Resources */,
+				B6E71C292739383D009123A3 /* SupportingFiles */,
 			);
 			path = "iOS-TvShows";
+			sourceTree = "<group>";
+		};
+		B6E71C24273936C7009123A3 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C5A27394B6E009123A3 /* Extensions */,
+				B6E71C482739495B009123A3 /* Networking */,
+				B6E71C25273936CC009123A3 /* VIPER */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B6E71C25273936CC009123A3 /* VIPER */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C18273936BF009123A3 /* BaseWireframe.swift */,
+				B6E71C19273936BF009123A3 /* FormatterInterface.swift */,
+				B6E71C1A273936BF009123A3 /* UIStoryboardExtension.swift */,
+				B6E71C1B273936BF009123A3 /* PresenterInterface.swift */,
+				B6E71C1C273936BF009123A3 /* ViewInterface.swift */,
+				B6E71C1D273936BF009123A3 /* InteractorInterface.swift */,
+			);
+			path = VIPER;
+			sourceTree = "<group>";
+		};
+		B6E71C2627393714009123A3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B6BE824727391EF6000C38E9 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B6E71C282739373F009123A3 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				B6BE824C27391EF6000C38E9 /* Info.plist */,
+				B6BE823E27391EF4000C38E9 /* AppDelegate.swift */,
+				B6E71C672739501A009123A3 /* Constants.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		B6E71C292739383D009123A3 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B6BE824927391EF6000C38E9 /* LaunchScreen.storyboard */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		B6E71C3527393D63009123A3 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C4027393D75009123A3 /* Login */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		B6E71C4027393D75009123A3 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C3927393D70009123A3 /* LoginInteractor.swift */,
+				B6E71C3627393D70009123A3 /* LoginInterfaces.swift */,
+				B6E71C3727393D70009123A3 /* LoginPresenter.swift */,
+				B6E71C3827393D70009123A3 /* LoginViewController.swift */,
+				B6E71C3A27393D70009123A3 /* LoginWireframe.swift */,
+				B6E71C6027394C25009123A3 /* Router */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B6E71C482739495B009123A3 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C6427394FBE009123A3 /* Adapters */,
+				B6E71C6927395167009123A3 /* Authentication */,
+				B6E71C712739640D009123A3 /* DecodableAlamofire */,
+				B6E71C4C2739499B009123A3 /* Encoding */,
+				B6E71C4927394967009123A3 /* Router */,
+				B6E71C5727394B25009123A3 /* Rx */,
+				B6E71C5427394B12009123A3 /* Service */,
+				B6E71C5127394A86009123A3 /* SessionManager */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		B6E71C4927394967009123A3 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C4A27394973009123A3 /* Routable.swift */,
+				B6E71C4F273949D3009123A3 /* Router.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		B6E71C4C2739499B009123A3 /* Encoding */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C4D273949AC009123A3 /* EncodableParams.swift */,
+			);
+			path = Encoding;
+			sourceTree = "<group>";
+		};
+		B6E71C5127394A86009123A3 /* SessionManager */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C5227394A94009123A3 /* SessionManager.swift */,
+			);
+			path = SessionManager;
+			sourceTree = "<group>";
+		};
+		B6E71C5427394B12009123A3 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C5527394B1C009123A3 /* APIService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		B6E71C5727394B25009123A3 /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C5827394B35009123A3 /* APIService+Rx.swift */,
+			);
+			path = Rx;
+			sourceTree = "<group>";
+		};
+		B6E71C5A27394B6E009123A3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C5B27394B76009123A3 /* Result */,
+				B6B38523273A743300CFE02C /* URLRequest+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B6E71C5B27394B76009123A3 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C5C27394B81009123A3 /* Result+Rx.swift */,
+				B6E71C5E27394B90009123A3 /* Result+Map.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		B6E71C6027394C25009123A3 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C6127394CE9009123A3 /* LoginRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		B6E71C6427394FBE009123A3 /* Adapters */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C6527394FC9009123A3 /* AuthAdapter.swift */,
+			);
+			path = Adapters;
+			sourceTree = "<group>";
+		};
+		B6E71C6927395167009123A3 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C6A2739518A009123A3 /* AuthStorage.swift */,
+				B6E71C6C273951AA009123A3 /* AuthStorageInterface.swift */,
+				B6E71C6E273952C3009123A3 /* Model */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		B6E71C6E273952C3009123A3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C6F273952D3009123A3 /* AuthInfo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B6E71C712739640D009123A3 /* DecodableAlamofire */ = {
+			isa = PBXGroup;
+			children = (
+				B6E71C7227396431009123A3 /* DataRequest+Decodable.swift */,
+			);
+			path = DecodableAlamofire;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,9 +436,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6BE824327391EF4000C38E9 /* ViewController.swift in Sources */,
+				B6E71C5D27394B81009123A3 /* Result+Rx.swift in Sources */,
 				B6BE823F27391EF4000C38E9 /* AppDelegate.swift in Sources */,
-				B6BE824127391EF4000C38E9 /* SceneDelegate.swift in Sources */,
+				B6E71C22273936BF009123A3 /* ViewInterface.swift in Sources */,
+				B6E71C70273952D3009123A3 /* AuthInfo.swift in Sources */,
+				B6E71C4E273949AC009123A3 /* EncodableParams.swift in Sources */,
+				B6E71C5327394A94009123A3 /* SessionManager.swift in Sources */,
+				B6E71C1F273936BF009123A3 /* FormatterInterface.swift in Sources */,
+				B6E71C682739501A009123A3 /* Constants.swift in Sources */,
+				B6E71C50273949D3009123A3 /* Router.swift in Sources */,
+				B6E71C5F27394B90009123A3 /* Result+Map.swift in Sources */,
+				B6E71C6227394CE9009123A3 /* LoginRouter.swift in Sources */,
+				B6E71C7327396431009123A3 /* DataRequest+Decodable.swift in Sources */,
+				B6E71C5927394B35009123A3 /* APIService+Rx.swift in Sources */,
+				B6E71C5627394B1C009123A3 /* APIService.swift in Sources */,
+				B6E71C3C27393D70009123A3 /* LoginPresenter.swift in Sources */,
+				B6E71C4B27394973009123A3 /* Routable.swift in Sources */,
+				B6E71C6D273951AA009123A3 /* AuthStorageInterface.swift in Sources */,
+				B6E71C20273936BF009123A3 /* UIStoryboardExtension.swift in Sources */,
+				B6E71C3B27393D70009123A3 /* LoginInterfaces.swift in Sources */,
+				B6E71C23273936BF009123A3 /* InteractorInterface.swift in Sources */,
+				B6E71C3E27393D70009123A3 /* LoginInteractor.swift in Sources */,
+				B6E71C6627394FC9009123A3 /* AuthAdapter.swift in Sources */,
+				B6E71C6B2739518A009123A3 /* AuthStorage.swift in Sources */,
+				B6E71C1E273936BF009123A3 /* BaseWireframe.swift in Sources */,
+				B6E71C21273936BF009123A3 /* PresenterInterface.swift in Sources */,
+				B6B38524273A743300CFE02C /* URLRequest+Extensions.swift in Sources */,
+				B6E71C3D27393D70009123A3 /* LoginViewController.swift in Sources */,
+				B6E71C3F27393D70009123A3 /* LoginWireframe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,8 +605,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4V748CASZG;
-				INFOPLIST_FILE = "iOS-TvShows/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_FILE = "iOS-TvShows/Application/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -366,8 +626,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4V748CASZG;
-				INFOPLIST_FILE = "iOS-TvShows/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				INFOPLIST_FILE = "iOS-TvShows/Application/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
