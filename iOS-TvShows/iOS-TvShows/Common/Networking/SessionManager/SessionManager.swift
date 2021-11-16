@@ -64,7 +64,7 @@ private extension SessionManager {
 
     // Here you can add custom event monitors like loggers.
     var eventMonitors: [EventMonitor] {
-        var monitors = [EventMonitor]()
+        let monitors = [EventMonitor]()
         #if DEBUG
 //        monitors.append(AlamofireConsoleLogger())
         #endif
