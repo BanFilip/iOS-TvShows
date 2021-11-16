@@ -49,6 +49,15 @@
 		B6C90E282743B70600504E73 /* URLRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38523273A743300CFE02C /* URLRequest+Extensions.swift */; };
 		B6C90E292743B71000504E73 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C3827393D70009123A3 /* LoginViewController.swift */; };
 		B6C90E2A2743B71300504E73 /* LoginWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C3A27393D70009123A3 /* LoginWireframe.swift */; };
+		B6C90E312743BA5400504E73 /* HomeInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C90E2C2743BA5400504E73 /* HomeInterfaces.swift */; };
+		B6C90E322743BA5400504E73 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C90E2D2743BA5400504E73 /* HomePresenter.swift */; };
+		B6C90E332743BA5400504E73 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C90E2E2743BA5400504E73 /* HomeViewController.swift */; };
+		B6C90E342743BA5400504E73 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C90E2F2743BA5400504E73 /* HomeInteractor.swift */; };
+		B6C90E352743BA5400504E73 /* HomeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C90E302743BA5400504E73 /* HomeWireframe.swift */; };
+		B6C90E372743BA8A00504E73 /* Progressable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C90E362743BA8A00504E73 /* Progressable.swift */; };
+		B6C90E3A2743BABE00504E73 /* Single+Progressable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C90E392743BABE00504E73 /* Single+Progressable.swift */; };
+		B6C90E3D2743BADD00504E73 /* Driver+Progressable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C90E3C2743BADD00504E73 /* Driver+Progressable.swift */; };
+		B6C90E3F2743BB4600504E73 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C90E3E2743BB4600504E73 /* String+Extensions.swift */; };
 		B6E71C1E273936BF009123A3 /* BaseWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C18273936BF009123A3 /* BaseWireframe.swift */; };
 		B6E71C3C27393D70009123A3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C3727393D70009123A3 /* LoginPresenter.swift */; };
 		B6E71C3E27393D70009123A3 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E71C3927393D70009123A3 /* LoginInteractor.swift */; };
@@ -96,6 +105,15 @@
 		B6C90E1327428B0B00504E73 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		B6C90E1427428B0B00504E73 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		B6C90E1927428DF700504E73 /* KeyboardHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
+		B6C90E2C2743BA5400504E73 /* HomeInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInterfaces.swift; sourceTree = "<group>"; };
+		B6C90E2D2743BA5400504E73 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		B6C90E2E2743BA5400504E73 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B6C90E2F2743BA5400504E73 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		B6C90E302743BA5400504E73 /* HomeWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWireframe.swift; sourceTree = "<group>"; };
+		B6C90E362743BA8A00504E73 /* Progressable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progressable.swift; sourceTree = "<group>"; };
+		B6C90E392743BABE00504E73 /* Single+Progressable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Progressable.swift"; sourceTree = "<group>"; };
+		B6C90E3C2743BADD00504E73 /* Driver+Progressable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Driver+Progressable.swift"; sourceTree = "<group>"; };
+		B6C90E3E2743BB4600504E73 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		B6E71C18273936BF009123A3 /* BaseWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWireframe.swift; sourceTree = "<group>"; };
 		B6E71C19273936BF009123A3 /* FormatterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterInterface.swift; sourceTree = "<group>"; };
 		B6E71C1A273936BF009123A3 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
@@ -157,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				B6B38528273A923600CFE02C /* ConstructViewsProtocol.swift */,
+				B6C90E362743BA8A00504E73 /* Progressable.swift */,
 				B6B3855E273C3DAF00CFE02C /* Components */,
 			);
 			path = UI;
@@ -284,11 +303,41 @@
 			path = KeyboardHandler;
 			sourceTree = "<group>";
 		};
+		B6C90E2B2743BA4700504E73 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B6C90E2C2743BA5400504E73 /* HomeInterfaces.swift */,
+				B6C90E2D2743BA5400504E73 /* HomePresenter.swift */,
+				B6C90E2E2743BA5400504E73 /* HomeViewController.swift */,
+				B6C90E2F2743BA5400504E73 /* HomeInteractor.swift */,
+				B6C90E302743BA5400504E73 /* HomeWireframe.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B6C90E382743BAAF00504E73 /* RxSwift */ = {
+			isa = PBXGroup;
+			children = (
+				B6C90E392743BABE00504E73 /* Single+Progressable.swift */,
+			);
+			path = RxSwift;
+			sourceTree = "<group>";
+		};
+		B6C90E3B2743BAC700504E73 /* RxCocoa */ = {
+			isa = PBXGroup;
+			children = (
+				B6C90E3C2743BADD00504E73 /* Driver+Progressable.swift */,
+			);
+			path = RxCocoa;
+			sourceTree = "<group>";
+		};
 		B6E71C24273936C7009123A3 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				B6E71C5A27394B6E009123A3 /* Extensions */,
 				B6E71C482739495B009123A3 /* Networking */,
+				B6C90E3B2743BAC700504E73 /* RxCocoa */,
+				B6C90E382743BAAF00504E73 /* RxSwift */,
 				B6B3861A273C5FE700CFE02C /* Services */,
 				B6B38527273A922600CFE02C /* UI */,
 				B6E71C25273936CC009123A3 /* VIPER */,
@@ -339,6 +388,7 @@
 		B6E71C3527393D63009123A3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B6C90E2B2743BA4700504E73 /* Home */,
 				B6E71C4027393D75009123A3 /* Login */,
 			);
 			path = Modules;
@@ -418,6 +468,7 @@
 			isa = PBXGroup;
 			children = (
 				B6B385F0273C3E9700CFE02C /* CGFloat+Extensions.swift */,
+				B6C90E3E2743BB4600504E73 /* String+Extensions.swift */,
 				B6B3854C273A992F00CFE02C /* UILabel+Extensions.swift */,
 				B6B38531273A958D00CFE02C /* UINavigationBar+Extensions.swift */,
 				B6B3852F273A955200CFE02C /* UINavigationController+Extensions.swift */,
@@ -600,12 +651,14 @@
 				B6C90E272743B6FF00504E73 /* PresenterInterface.swift in Sources */,
 				B6C90E262743B6F800504E73 /* InteractorInterface.swift in Sources */,
 				B6C90E252743B6EA00504E73 /* LoginInterfaces.swift in Sources */,
+				B6C90E3A2743BABE00504E73 /* Single+Progressable.swift in Sources */,
 				B6C90E242743B6D200504E73 /* UIStoryboardExtension.swift in Sources */,
 				B6C90E232743B6C600504E73 /* APIService+Rx.swift in Sources */,
 				B6C90E222743B6B500504E73 /* Constants.swift in Sources */,
 				B6C90E212743B6AB00504E73 /* FormatterInterface.swift in Sources */,
 				B6C90E202743B69B00504E73 /* SessionManager.swift in Sources */,
 				B6C90E1F2743B68700504E73 /* EncodableParams.swift in Sources */,
+				B6C90E312743BA5400504E73 /* HomeInterfaces.swift in Sources */,
 				B6C90E1E2743B67500504E73 /* AuthInfo.swift in Sources */,
 				B6C90E1D2743B66F00504E73 /* ViewInterface.swift in Sources */,
 				B6C90E1C2743B62E00504E73 /* AppDelegate.swift in Sources */,
@@ -613,9 +666,12 @@
 				B6B38529273A923600CFE02C /* ConstructViewsProtocol.swift in Sources */,
 				B6C90E1A27428DF700504E73 /* KeyboardHandler.swift in Sources */,
 				B6B38617273C4C9A00CFE02C /* BaseTextField.swift in Sources */,
+				B6C90E332743BA5400504E73 /* HomeViewController.swift in Sources */,
 				B6B385F1273C3E9700CFE02C /* CGFloat+Extensions.swift in Sources */,
+				B6C90E372743BA8A00504E73 /* Progressable.swift in Sources */,
 				B6B385F9273C433300CFE02C /* PrimaryButton.swift in Sources */,
 				B6B3854D273A992F00CFE02C /* UILabel+Extensions.swift in Sources */,
+				B6C90E3D2743BADD00504E73 /* Driver+Progressable.swift in Sources */,
 				B6B38610273C4BFD00CFE02C /* TextFieldType.swift in Sources */,
 				B6E71C50273949D3009123A3 /* Router.swift in Sources */,
 				B6E71C5F27394B90009123A3 /* Result+Map.swift in Sources */,
@@ -625,14 +681,18 @@
 				B6C90E1627428B0B00504E73 /* UIImageExtension.swift in Sources */,
 				B6B38619273C4F0C00CFE02C /* BaseTextField+Design.swift in Sources */,
 				B6B3860A273C49F500CFE02C /* SeparatorView+Design.swift in Sources */,
+				B6C90E3F2743BB4600504E73 /* String+Extensions.swift in Sources */,
+				B6C90E342743BA5400504E73 /* HomeInteractor.swift in Sources */,
 				B6B3855D273AAC2B00CFE02C /* UIView+Extensions.swift in Sources */,
 				B6B3860E273C4B9500CFE02C /* TextFieldTypeModel.swift in Sources */,
 				B6B38526273A921200CFE02C /* LoginViewController+Design.swift in Sources */,
+				B6C90E322743BA5400504E73 /* HomePresenter.swift in Sources */,
 				B6B38612273C4C3600CFE02C /* CustomInputView.swift in Sources */,
 				B6E71C5627394B1C009123A3 /* APIService.swift in Sources */,
 				B6E71C3C27393D70009123A3 /* LoginPresenter.swift in Sources */,
 				B6E71C4B27394973009123A3 /* Routable.swift in Sources */,
 				B6E71C6D273951AA009123A3 /* AuthStorageInterface.swift in Sources */,
+				B6C90E352743BA5400504E73 /* HomeWireframe.swift in Sources */,
 				B6B38614273C4C4100CFE02C /* CustomInputView+Design.swift in Sources */,
 				B6B385FD273C43B800CFE02C /* BaseButton.swift in Sources */,
 				B6B38532273A958D00CFE02C /* UINavigationBar+Extensions.swift in Sources */,

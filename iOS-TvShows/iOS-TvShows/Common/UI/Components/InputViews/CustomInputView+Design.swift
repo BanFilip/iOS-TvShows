@@ -17,24 +17,32 @@ extension CustomInputView: ConstructViewsProtocol {
     }
 
     func createViews() {
+        stackView = UIStackView()
+        addSubview(stackView)
+
         textField = BaseTextField(with: type)
-        addSubview(textField)
+        stackView.addArrangedSubview(textField)
 
         separator = SeparatorView()
-        addSubview(separator)
+        stackView.addArrangedSubview(separator)
+
+        errorLabel = UILabel(with: UIFont.systemFont(ofSize: 17))
+        stackView.addArrangedSubview(errorLabel)
     }
 
     func styleViews() {
+        stackView.axis = .vertical
+        stackView.spacing = 6
+
+        errorLabel.font = UIFont.systemFont(ofSize: 17)
+        errorLabel.textAlignment = .left
+        errorLabel.textColor = .red
+        errorLabel.isHidden = true
     }
 
     func defineLayoutForViews() {
-        textField.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-        }
-
-        separator.snp.makeConstraints {
-            $0.top.equalTo(textField.snp.bottom)
-            $0.bottom.leading.trailing.equalToSuperview()
+        stackView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 }
