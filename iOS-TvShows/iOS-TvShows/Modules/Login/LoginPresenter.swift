@@ -123,12 +123,10 @@ private extension LoginPresenter {
 
     func handle(isEmailValid: Driver<String?>, isPasswordValid: Driver<String?>) -> Driver<Bool> {
         let isPasswordValid = isPasswordValid
-            .debounce(.seconds(1))
             .compactMap { $0 }
             .map { $0.isPasswordValid }
 
         let isEmailValid = isEmailValid
-            .debounce(.seconds(1))
             .compactMap { $0 }
             .map { $0.isEmailValid }
 
