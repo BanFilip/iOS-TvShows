@@ -76,7 +76,7 @@ private extension LoginPresenter {
         )
         login
             .withLatestFrom(inputs)
-            .flatMap { [unowned self] email, password, shouldRemember -> Driver<Void> in
+            .flatMapLatest { [unowned self] email, password, shouldRemember -> Driver<Void> in
                 performLogin(email: email, password: password, shouldRemember: shouldRemember)
             }
             .drive(onNext: { [unowned self] _ in
@@ -105,7 +105,7 @@ private extension LoginPresenter {
         )
         register
             .withLatestFrom(inputs)
-            .flatMap { [unowned self] email, password, shouldRemember -> Driver<Void> in
+            .flatMapLatest { [unowned self] email, password, shouldRemember -> Driver<Void> in
                 performRegister(email: email, password: password, shouldRemember: shouldRemember)
             }
             .drive(onNext: { [unowned self] _ in
@@ -132,12 +132,11 @@ private extension LoginPresenter {
 
         return Driver.combineLatest(isEmailValid, isPasswordValid)
             .map { $0.0 && $0.1 }
-            .startWith(false)
     }
 
     func handle(validateEmail email: Driver<String?>) -> Driver<Bool> {
         email
-            .debounce(.seconds(1))
+            .debounce(.milliseconds(400))
             .compactMap { $0 }
             .filter { !$0.isEmpty }
             .map { $0.isEmailValid }
@@ -145,7 +144,7 @@ private extension LoginPresenter {
 
     func handle(validatePassword password: Driver<String?>) -> Driver<Bool> {
         password
-            .debounce(.seconds(1))
+            .debounce(.milliseconds(400))
             .compactMap { $0 }
             .filter { !$0.isEmpty }
             .map { $0.isPasswordValid }

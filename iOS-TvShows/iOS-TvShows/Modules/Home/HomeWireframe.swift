@@ -12,24 +12,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class HomeWireframe: BaseWireframe<HomeViewController> {
-
-    // MARK: - Private properties -
+final class HomeWireframe: BaseWireframe<HomeTabBarController> {
 
     // MARK: - Module setup -
 
     init() {
-        let moduleViewController = HomeViewController()
-        super.init(viewController: moduleViewController)
+        let topRatedNav = UINavigationController(rootViewController: TopRatedWireframe().viewController)
+        let showsNav = UINavigationController(rootViewController: ShowsWireframe().viewController)
 
-        let interactor = HomeInteractor()
-        let presenter = HomePresenter(view: moduleViewController, interactor: interactor, wireframe: self)
-        moduleViewController.presenter = presenter
+        let moduleTabBarController = HomeTabBarController(viewControllers: [showsNav, topRatedNav])
+        super.init(viewController: moduleTabBarController)
     }
-
-}
-
-// MARK: - Extensions -
-
-extension HomeWireframe: HomeWireframeInterface {
 }

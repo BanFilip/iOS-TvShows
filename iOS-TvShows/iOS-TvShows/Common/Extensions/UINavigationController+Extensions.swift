@@ -20,18 +20,20 @@ extension UINavigationController {
         setNavigationBarHidden(true, animated: animated)
     }
 
-    func showNavigationBar(leftOptionImage: UIImage? = nil) {
-        setNavigationBarHidden(false, animated: true)
-        navigationBar.barTintColor = UIColor.TVShows.appWhite
-        navigationBar.removeBottomBorder()
+    func styleNavBar(prefersLargeTitles: Bool) {
+        navigationBar.prefersLargeTitles = prefersLargeTitles
+        navigationBar.isTranslucent = false
+        navigationBar.barTintColor = .clear
+        navigationBar.backgroundColor = UIColor.TVShows.appGrey
 
-        if let leftOptionImage = leftOptionImage {
-            let leftButton = UIBarButtonItem(
-                image: leftOptionImage,
-                style: .plain,
-                target: nil,
-                action: nil)
-            navigationItem.setLeftBarButton(leftButton, animated: false)
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithTransparentBackground()
+            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
+            navBarAppearance.backgroundColor = UIColor.TVShows.appGrey
+            navigationBar.standardAppearance = navBarAppearance
+            navigationBar.scrollEdgeAppearance = navBarAppearance
+            navigationBar.removeBottomBorder()
         }
     }
 }
