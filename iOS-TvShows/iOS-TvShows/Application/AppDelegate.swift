@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
 
-        rootNavigationController.setRootWireframe(HomeWireframe())
+        rootNavigationController.setRootWireframe(LoginWireframe())
         window.rootViewController = rootNavigationController
         window.makeKeyAndVisible()
         return true
