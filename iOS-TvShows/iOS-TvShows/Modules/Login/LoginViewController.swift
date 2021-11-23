@@ -59,8 +59,53 @@ private extension LoginViewController {
         KeyboardHandler
             .register(scrollView: scrollView)
             .disposed(by: disposeBag)
-        let output = Login.ViewOutput()
+
+        let shouldRemember = rememberButton.rx.tap.asDriver()
+            .scan(false) { previousValue, _ in !previousValue }
+            .startWith(false)
+
+        let output = Login.ViewOutput(
+            email: emailInputView.textField.rx.text.asDriver(),
+            password: passwordInputView.textField.rx.text.asDriver(),
+            shouldRemember: shouldRemember,
+            login: loginButton.rx.tap.asSignal(),
+            register: registerButton.rx.tap.asSignal()
+        )
 
         let input = presenter.configure(with: output)
+        handle(shouldRemember)
+        handle(areButtonsEnabled: input.areButtonsEnabled)
+        handle(isEmailValid: input.isEmailValid)
+        handle(isPasswordValid: input.isPasswordValid)
+    }
+}
+
+private extension LoginViewController {
+    func handle(_ shouldRemember: Driver<Bool>) {
+        shouldRemember
+            .drive(rememberButton.rx.isSelected)
+            .disposed(by: disposeBag)
+    }
+
+    func handle(areButtonsEnabled: Driver<Bool>) {
+        areButtonsEnabled
+            .drive(registerButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        areButtonsEnabled
+            .drive(loginButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+    }
+
+    func handle(isEmailValid: Driver<Bool>) {
+        isEmailValid
+            .drive(emailInputView.rx.isValid)
+            .disposed(by: disposeBag)
+    }
+
+    func handle(isPasswordValid: Driver<Bool>) {
+        isPasswordValid
+            .drive(passwordInputView.rx.isValid)
+            .disposed(by: disposeBag)
     }
 }

@@ -74,8 +74,10 @@ extension LoginViewController: ConstructViewsProtocol {
         helperLabel.textColor = UIColor.TVShows.appWhite
 
         emailInputView.placeholder = "Email"
+        emailInputView.errorLabel.text = "Email format is not correct."
 
         passwordInputView.placeholder = "Password"
+        passwordInputView.errorLabel.text = "Password must contain at least 6 characters."
 
         rememberButton.setTitle("Remember me", for: .normal)
         rememberButton.setTitleColor(UIColor.TVShows.appWhite, for: .normal)
