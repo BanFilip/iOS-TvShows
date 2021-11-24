@@ -41,7 +41,9 @@ extension ShowsPresenter: ShowsPresenterInterface {
 
     func configure(with output: Shows.ViewOutput) -> Shows.ViewInput {
         handle(settings: output.settings)
-        return Shows.ViewInput()
+        return Shows.ViewInput(
+            shows: shows
+        )
     }
 
     func handle(settings: Signal<Void>) {
@@ -50,6 +52,13 @@ extension ShowsPresenter: ShowsPresenterInterface {
                 wireframe.goToSettings()
             })
             .disposed(by: disposeBag)
+    }
+
+    var shows: Observable<[Show]> {
+        interactor
+            .shows
+            .handleLoadingAndError(with: view)
+            .asObservable()
     }
 
 }

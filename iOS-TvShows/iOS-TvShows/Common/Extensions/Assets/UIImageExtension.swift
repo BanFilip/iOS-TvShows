@@ -16,6 +16,8 @@ extension UIImage.TVShows {
         static var shows: UIImage { return UIImage(named: "Icons/shows", in: .main, compatibleWith: nil)! }
         static var topRated: UIImage { return UIImage(named: "Icons/topRated", in: .main, compatibleWith: nil)! }
         static var settings: UIImage { return UIImage(named: "Icons/settings", in: .main, compatibleWith: nil)! }
+        static var showPlaceholder: UIImage { return UIImage(named: "Icons/ic-show-placeholder", in: .main, compatibleWith: nil)! }
+        static var profilePlaceholder: UIImage { return UIImage(named: "Icons/ic-profile-placeholder", in: .main, compatibleWith: nil)! }
 	}
 
 	static var loginBackground: UIImage { return UIImage(named: "loginBackground", in: .main, compatibleWith: nil)! }

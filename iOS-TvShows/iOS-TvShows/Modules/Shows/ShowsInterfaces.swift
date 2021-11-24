@@ -16,7 +16,7 @@ protocol ShowsWireframeInterface: WireframeInterface {
     func goToSettings()
 }
 
-protocol ShowsViewInterface: ViewInterface {
+protocol ShowsViewInterface: ViewInterface, Progressable {
 }
 
 protocol ShowsPresenterInterface: PresenterInterface {
@@ -24,6 +24,7 @@ protocol ShowsPresenterInterface: PresenterInterface {
 }
 
 protocol ShowsInteractorInterface: InteractorInterface {
+    var shows: Single<[Show]> { get }
 }
 
 enum Shows {
@@ -33,6 +34,7 @@ enum Shows {
     }
 
     struct ViewInput {
+        let shows: Observable<[Show]>
     }
 
 }

@@ -12,9 +12,30 @@ import Foundation
 import RxSwift
 
 final class ShowsInteractor {
+
+    private let service: APIService
+    private let sessionManager: SessionManager
+
+    init(
+        service: APIService = APIService.instance,
+        sessionManager: SessionManager = .default
+    ) {
+        self.service = service
+        self.sessionManager = sessionManager
+    }
 }
 
 // MARK: - Extensions -
 
 extension ShowsInteractor: ShowsInteractorInterface {
+
+    var shows: Single<[Show]> {
+        service.rx
+            .request(
+                ShowsResponse.self,
+                router: ShowsRouter.shows,
+                session: sessionManager.session
+            )
+            .map { $0.shows }
+    }
 }

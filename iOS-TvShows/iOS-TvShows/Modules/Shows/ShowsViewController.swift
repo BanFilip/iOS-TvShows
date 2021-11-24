@@ -16,11 +16,16 @@ final class ShowsViewController: UIViewController {
 
     // MARK: - Public properties -
 
+    var tableView: UITableView!
     var presenter: ShowsPresenterInterface!
 
     // MARK: - Private properties -
 
     private let disposeBag = DisposeBag()
+
+    private lazy var tableDataSource: TableDataSourceDelegate = {
+        return TableDataSourceDelegate(tableView: tableView)
+    }()
 
     // MARK: - Lifecycle -
 
@@ -54,6 +59,16 @@ private extension ShowsViewController {
         )
 
         view.backgroundColor = UIColor.TVShows.appWhite
+        tableView = UITableView()
+        view.addSubview(tableView)
+        tableView.backgroundColor = UIColor.TVShows.appGrey
+//        tableView.tableFooterView = UIView(frame: .zero)
+//        tableView.contentInsetAdjustmentBehavior = .never
+        tableView.registerClass(cellOfType: ShowTableViewCell.self)
+
+        tableView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
 
     func setupView() {
@@ -63,5 +78,15 @@ private extension ShowsViewController {
         )
 
         let input = presenter.configure(with: output)
+        handle(input.shows)
+    }
+}
+
+private extension ShowsViewController {
+    func handle(_ shows: Observable<[Show]>) {
+        shows
+            .map { $0.map { ShowTableCellItem(show: $0)} }
+            .bind(to: tableDataSource.rx.items)
+            .disposed(by: disposeBag)
     }
 }
