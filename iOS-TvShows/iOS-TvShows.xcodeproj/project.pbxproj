@@ -24,6 +24,11 @@
 		B616B9E8274E621900676A32 /* UITableView+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B616B9E7274E621900676A32 /* UITableView+Dequeue.swift */; };
 		B616B9EA274E623A00676A32 /* UITableView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = B616B9E9274E623A00676A32 /* UITableView+Register.swift */; };
 		B616B9EC274E650E00676A32 /* Rx+DataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B616B9EB274E650E00676A32 /* Rx+DataSourceDelegate.swift */; };
+		B616B9F3274E7FF200676A32 /* ShowDetailsInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = B616B9EE274E7FF200676A32 /* ShowDetailsInterfaces.swift */; };
+		B616B9F4274E7FF200676A32 /* ShowDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B616B9EF274E7FF200676A32 /* ShowDetailsPresenter.swift */; };
+		B616B9F5274E7FF200676A32 /* ShowDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B616B9F0274E7FF200676A32 /* ShowDetailsViewController.swift */; };
+		B616B9F6274E7FF200676A32 /* ShowDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B616B9F1274E7FF200676A32 /* ShowDetailsInteractor.swift */; };
+		B616B9F7274E7FF200676A32 /* ShowDetailsWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B616B9F2274E7FF200676A32 /* ShowDetailsWireframe.swift */; };
 		B6B38526273A921200CFE02C /* LoginViewController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38525273A921200CFE02C /* LoginViewController+Design.swift */; };
 		B6B38529273A923600CFE02C /* ConstructViewsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38528273A923600CFE02C /* ConstructViewsProtocol.swift */; };
 		B6B38530273A955200CFE02C /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B3852F273A955200CFE02C /* UINavigationController+Extensions.swift */; };
@@ -121,6 +126,11 @@
 		B616B9E7274E621900676A32 /* UITableView+Dequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeue.swift"; sourceTree = "<group>"; };
 		B616B9E9274E623A00676A32 /* UITableView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Register.swift"; sourceTree = "<group>"; };
 		B616B9EB274E650E00676A32 /* Rx+DataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+DataSourceDelegate.swift"; sourceTree = "<group>"; };
+		B616B9EE274E7FF200676A32 /* ShowDetailsInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsInterfaces.swift; sourceTree = "<group>"; };
+		B616B9EF274E7FF200676A32 /* ShowDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsPresenter.swift; sourceTree = "<group>"; };
+		B616B9F0274E7FF200676A32 /* ShowDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsViewController.swift; sourceTree = "<group>"; };
+		B616B9F1274E7FF200676A32 /* ShowDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsInteractor.swift; sourceTree = "<group>"; };
+		B616B9F2274E7FF200676A32 /* ShowDetailsWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsWireframe.swift; sourceTree = "<group>"; };
 		B6B38523273A743300CFE02C /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extensions.swift"; sourceTree = "<group>"; };
 		B6B38525273A921200CFE02C /* LoginViewController+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Design.swift"; sourceTree = "<group>"; };
 		B6B38528273A923600CFE02C /* ConstructViewsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructViewsProtocol.swift; sourceTree = "<group>"; };
@@ -237,14 +247,6 @@
 			path = Routers;
 			sourceTree = "<group>";
 		};
-		B616B9C7274E59E500676A32 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				B616B9C8274E59F600676A32 /* Show.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		B616B9CA274E605B00676A32 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +312,18 @@
 				B616B9E9274E623A00676A32 /* UITableView+Register.swift */,
 			);
 			path = UITableView;
+			sourceTree = "<group>";
+		};
+		B616B9ED274E7FDD00676A32 /* ShowDetails */ = {
+			isa = PBXGroup;
+			children = (
+				B616B9EE274E7FF200676A32 /* ShowDetailsInterfaces.swift */,
+				B616B9EF274E7FF200676A32 /* ShowDetailsPresenter.swift */,
+				B616B9F0274E7FF200676A32 /* ShowDetailsViewController.swift */,
+				B616B9F1274E7FF200676A32 /* ShowDetailsInteractor.swift */,
+				B616B9F2274E7FF200676A32 /* ShowDetailsWireframe.swift */,
+			);
+			path = ShowDetails;
 			sourceTree = "<group>";
 		};
 		B6B38527273A922600CFE02C /* UI */ = {
@@ -452,6 +466,7 @@
 				B6C90E2E2743BA5400504E73 /* HomeTabBarController.swift */,
 				B6C90E302743BA5400504E73 /* HomeWireframe.swift */,
 				B6E2A479274CE18900BB07F4 /* Models */,
+				B616B9C4274E566800676A32 /* Routers */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -501,6 +516,7 @@
 			isa = PBXGroup;
 			children = (
 				B6E2A47A274CE19900BB07F4 /* TabBarItemType.swift */,
+				B616B9C8274E59F600676A32 /* Show.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -574,11 +590,10 @@
 		B6E71C3527393D63009123A3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				B616B9C4274E566800676A32 /* Routers */,
-				B616B9C7274E59E500676A32 /* Models */,
 				B6C90E2B2743BA4700504E73 /* Home */,
 				B6E71C4027393D75009123A3 /* Login */,
 				B6E2A484274D28A400BB07F4 /* Settings */,
+				B616B9ED274E7FDD00676A32 /* ShowDetails */,
 				B6E2A45E274CDBA900BB07F4 /* Shows */,
 				B6E2A45F274CDBB600BB07F4 /* TopRated */,
 			);
@@ -841,6 +856,7 @@
 				B616B9D2274E60EC00676A32 /* TableCellItem.swift in Sources */,
 				B6C90E292743B71000504E73 /* LoginViewController.swift in Sources */,
 				B6C90E282743B70600504E73 /* URLRequest+Extensions.swift in Sources */,
+				B616B9F7274E7FF200676A32 /* ShowDetailsWireframe.swift in Sources */,
 				B6C90E272743B6FF00504E73 /* PresenterInterface.swift in Sources */,
 				B616B9C6274E568100676A32 /* ShowsRouter.swift in Sources */,
 				B6C90E262743B6F800504E73 /* InteractorInterface.swift in Sources */,
@@ -858,6 +874,7 @@
 				B6C90E1C2743B62E00504E73 /* AppDelegate.swift in Sources */,
 				B6C90E1B2743B60A00504E73 /* Result+Rx.swift in Sources */,
 				B6B38529273A923600CFE02C /* ConstructViewsProtocol.swift in Sources */,
+				B616B9F4274E7FF200676A32 /* ShowDetailsPresenter.swift in Sources */,
 				B6C90E1A27428DF700504E73 /* KeyboardHandler.swift in Sources */,
 				B616B9E1274E619800676A32 /* ItemConfigurable.swift in Sources */,
 				B616B9DA274E614400676A32 /* AssociableTableCellItem.swift in Sources */,
@@ -875,6 +892,7 @@
 				B6E2A46F274CDBD400BB07F4 /* TopRatedInterfaces.swift in Sources */,
 				B616B9DF274E617500676A32 /* SimpleAnimationTableViewReloader.swift in Sources */,
 				B6E2A472274CDBD400BB07F4 /* TopRatedInteractor.swift in Sources */,
+				B616B9F6274E7FF200676A32 /* ShowDetailsInteractor.swift in Sources */,
 				B616B9DD274E615D00676A32 /* TableViewReloader.swift in Sources */,
 				B6B385F9273C433300CFE02C /* PrimaryButton.swift in Sources */,
 				B6B3854D273A992F00CFE02C /* UILabel+Extensions.swift in Sources */,
@@ -903,11 +921,13 @@
 				B6C90E352743BA5400504E73 /* HomeWireframe.swift in Sources */,
 				B6E2A467274CDBC600BB07F4 /* ShowsViewController.swift in Sources */,
 				B6B38614273C4C4100CFE02C /* CustomInputView+Design.swift in Sources */,
+				B616B9F5274E7FF200676A32 /* ShowDetailsViewController.swift in Sources */,
 				B6E2A48E274D28B800BB07F4 /* SettingsWireframe.swift in Sources */,
 				B616B9D8274E612600676A32 /* TableDataSourceDelegate.swift in Sources */,
 				B6E2A469274CDBC600BB07F4 /* ShowsWireframe.swift in Sources */,
 				B6B385FD273C43B800CFE02C /* BaseButton.swift in Sources */,
 				B6E2A47B274CE19900BB07F4 /* TabBarItemType.swift in Sources */,
+				B616B9F3274E7FF200676A32 /* ShowDetailsInterfaces.swift in Sources */,
 				B6B38532273A958D00CFE02C /* UINavigationBar+Extensions.swift in Sources */,
 				B6E71C3E27393D70009123A3 /* LoginInteractor.swift in Sources */,
 				B6E71C6627394FC9009123A3 /* AuthAdapter.swift in Sources */,

@@ -42,23 +42,28 @@ extension ShowsPresenter: ShowsPresenterInterface {
     func configure(with output: Shows.ViewOutput) -> Shows.ViewInput {
         handle(settings: output.settings)
         return Shows.ViewInput(
-            shows: shows
+            shows: createItems()
         )
     }
 
     func handle(settings: Signal<Void>) {
         settings
-            .emit(onNext: { [unowned self] _ in
+            .emit(onNext: { [unowned self] in
                 wireframe.goToSettings()
             })
             .disposed(by: disposeBag)
     }
 
-    var shows: Observable<[Show]> {
+    func createItems() -> Driver<[TableCellItem]> {
         interactor
             .shows
             .handleLoadingAndError(with: view)
-            .asObservable()
+            .asDriver(onErrorDriveWith: .never())
+            .map { [unowned self] in $0.map {
+                ShowTableCellItem(
+                    show: $0,
+                    didSelect: { [unowned wireframe] in wireframe.goToShowDetails(with: $0.show) }
+                )}
+            }
     }
-
 }

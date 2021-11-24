@@ -14,6 +14,7 @@ import RxCocoa
 
 protocol ShowsWireframeInterface: WireframeInterface {
     func goToSettings()
+    func goToShowDetails(with model: Show)
 }
 
 protocol ShowsViewInterface: ViewInterface, Progressable {
@@ -34,7 +35,7 @@ enum Shows {
     }
 
     struct ViewInput {
-        let shows: Observable<[Show]>
+        let shows: Driver<[TableCellItem]>
     }
 
 }

@@ -62,8 +62,6 @@ private extension ShowsViewController {
         tableView = UITableView()
         view.addSubview(tableView)
         tableView.backgroundColor = UIColor.TVShows.appGrey
-//        tableView.tableFooterView = UIView(frame: .zero)
-//        tableView.contentInsetAdjustmentBehavior = .never
         tableView.registerClass(cellOfType: ShowTableViewCell.self)
 
         tableView.snp.makeConstraints {
@@ -76,17 +74,15 @@ private extension ShowsViewController {
         let output = Shows.ViewOutput(
             settings: rightBarButton.rx.tap.asSignal()
         )
-
         let input = presenter.configure(with: output)
         handle(input.shows)
     }
 }
 
 private extension ShowsViewController {
-    func handle(_ shows: Observable<[Show]>) {
+    func handle(_ shows: Driver<[TableCellItem]>) {
         shows
-            .map { $0.map { ShowTableCellItem(show: $0)} }
-            .bind(to: tableDataSource.rx.items)
+            .drive(tableDataSource.rx.items)
             .disposed(by: disposeBag)
     }
 }

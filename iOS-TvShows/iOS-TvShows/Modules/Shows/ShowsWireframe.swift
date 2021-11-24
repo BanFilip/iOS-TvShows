@@ -39,4 +39,8 @@ extension ShowsWireframe: ShowsWireframeInterface {
             completion: nil
         )
     }
+
+    func goToShowDetails(with model: Show) {
+        navigationController?.pushWireframe(ShowDetailsWireframe(with: model))
+    }
 }

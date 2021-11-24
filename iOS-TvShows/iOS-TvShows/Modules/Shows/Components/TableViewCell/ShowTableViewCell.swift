@@ -7,10 +7,14 @@
 
 import UIKit
 import Kingfisher
+import RxCocoa
 
 struct ShowTableCellItem: TableCellItem {
     let show: Show
+    let didSelect: ((ShowTableCellItem) -> Void)?
+}
 
+extension ShowTableCellItem {
     func cell(from tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(ofType: ShowTableViewCell.self, for: indexPath)
         cell.setData(with: show)
@@ -19,6 +23,10 @@ struct ShowTableCellItem: TableCellItem {
 
     var height: CGFloat {
         114
+    }
+
+    func didSelect(at indexPath: IndexPath) {
+        didSelect?(self)
     }
 }
 
@@ -30,6 +38,7 @@ class ShowTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+        backgroundColor = UIColor.TVShows.appWhite
         customImageView = UIImageView()
         contentView.addSubview(customImageView)
         label = UILabel(with: UIFont.systemFont(ofSize: 17))
