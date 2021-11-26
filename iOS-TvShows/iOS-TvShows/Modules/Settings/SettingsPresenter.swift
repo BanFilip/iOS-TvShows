@@ -12,7 +12,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class SettingsPresenter {
+final class SettingsPresenter: NSObject {
 
     // MARK: - Private properties -
 
@@ -40,11 +40,15 @@ final class SettingsPresenter {
 extension SettingsPresenter: SettingsPresenterInterface {
 
     func configure(with output: Settings.ViewOutput) -> Settings.ViewInput {
-        handle(close: output.close)
-        return Settings.ViewInput()
+        onCloseTapped(close: output.close)
+        onChangePhotoTapped(changePhoto: output.changePhoto)
+        onLogoutTapped(logout: output.logout)
+        return Settings.ViewInput(
+            user: user
+        )
     }
 
-    func handle(close: Signal<Void>) {
+    func onCloseTapped(close: Signal<Void>) {
         close
             .emit(onNext: { [unowned self] _ in
                 wireframe.dismiss()
@@ -52,4 +56,46 @@ extension SettingsPresenter: SettingsPresenterInterface {
             .disposed(by: disposeBag)
     }
 
+    func onChangePhotoTapped(changePhoto: Signal<Void>) {
+        changePhoto
+            .emit(onNext: { [unowned self] _ in
+                wireframe.openGallery(delegate: self)
+            })
+            .disposed(by: disposeBag)
+    }
+
+    func onLogoutTapped(logout: Signal<Void>) {
+        logout
+            .emit(onNext: { [unowned self] _ in
+                interactor.deleteAuthInfo()
+                wireframe.goToLogin()
+            })
+            .disposed(by: disposeBag)
+    }
+
+    var user: Driver<User> {
+        interactor
+            .user
+            .handleLoadingAndError(with: view)
+            .asDriver(onErrorDriveWith: .never())
+    }
+}
+
+extension SettingsPresenter: UIImagePickerControllerDelegate {
+
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        if
+            let image = info[UIImagePickerController.InfoKey(
+                rawValue: "UIImagePickerControllerEditedImage"
+            )] as? UIImage {
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
 }

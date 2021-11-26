@@ -61,7 +61,6 @@ private extension ShowsViewController {
         view.backgroundColor = UIColor.TVShows.appWhite
         tableView = UITableView()
         view.addSubview(tableView)
-        tableView.backgroundColor = UIColor.TVShows.appGrey
         tableView.registerClass(cellOfType: ShowTableViewCell.self)
 
         tableView.snp.makeConstraints {

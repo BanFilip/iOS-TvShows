@@ -16,6 +16,11 @@ final class SettingsViewController: UIViewController {
 
     // MARK: - Public properties -
 
+    var emailLabel: UILabel!
+    var imageView: UIImageView!
+    var changePhotoButton: UIButton!
+    var logoutButton: PrimaryButton!
+
     var presenter: SettingsPresenterInterface!
 
     // MARK: - Private properties -
@@ -53,15 +58,83 @@ private extension SettingsViewController {
             action: nil
         )
         view.backgroundColor = UIColor.TVShows.appWhite
+
+        emailLabel = UILabel(with: UIFont.systemFont(ofSize: 17, weight: .medium))
+        view.addSubview(emailLabel)
+
+        imageView = UIImageView()
+        view.addSubview(imageView)
+
+        changePhotoButton = UIButton()
+        view.addSubview(changePhotoButton)
+
+        logoutButton = PrimaryButton()
+        view.addSubview(logoutButton)
+
+        emailLabel.textAlignment = .left
+        emailLabel.textColor = .black
+
+        imageView.clipsToBounds = true
+        imageView.roundAllCorners(withRadius: 50)
+
+        changePhotoButton.setTitle("Change Profile Photo", for: .normal)
+        changePhotoButton.titleLabel?.font = UIFont.systemFont(ofSize: 17)
+        changePhotoButton.setTitleColor(UIColor.TVShows.appPurple, for: .normal)
+
+        logoutButton.setTitle("Logout", for: .normal)
+
+        emailLabel.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(25)
+            $0.leading.trailing.equalToSuperview().inset(20)
+        }
+
+        imageView.snp.makeConstraints {
+            $0.top.equalTo(emailLabel.snp.bottom).offset(25)
+            $0.leading.equalToSuperview().inset(20)
+            $0.size.equalTo(CGSize(width: 100, height: 100))
+        }
+
+        changePhotoButton.snp.makeConstraints {
+            $0.centerY.equalTo(imageView)
+            $0.leading.equalTo(imageView.snp.trailing).offset(20)
+            $0.trailing.equalToSuperview().inset(54)
+        }
+
+        logoutButton.snp.makeConstraints {
+            $0.top.equalTo(imageView.snp.bottom).offset(44)
+            $0.leading.trailing.equalToSuperview().inset(20)
+        }
     }
 
     func setupView() {
         guard let leftBarButton = navigationItem.leftBarButtonItem else { return }
         let output = Settings.ViewOutput(
-            close: leftBarButton.rx.tap.asSignal()
+            close: leftBarButton.rx.tap.asSignal(),
+            changePhoto: changePhotoButton.rx.tap.asSignal(),
+            logout: logoutButton.rx.tap.asSignal()
         )
 
         let input = presenter.configure(with: output)
+        handle(input.user)
+    }
+
+    func handle(_ user: Driver<User>) {
+        user
+            .map { $0.email }
+            .drive(emailLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        user
+            .map { $0.imageUrl }
+            .drive(onNext: { [unowned self] imageUrl in
+                let placeholderImage = UIImage.TVShows.Icons.profilePlaceholder
+                guard let url = URL(string: imageUrl ?? "") else {
+                    imageView.image = placeholderImage
+                    return
+                }
+                imageView.kf.setImage(with: url, placeholder: placeholderImage, options: nil, completionHandler: nil)
+            })
+            .disposed(by: disposeBag)
     }
 
 }

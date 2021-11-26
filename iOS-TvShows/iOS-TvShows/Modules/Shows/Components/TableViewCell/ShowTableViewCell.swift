@@ -47,6 +47,8 @@ class ShowTableViewCell: UITableViewCell {
         customImageView.clipsToBounds = true
         customImageView.roundAllCorners(withRadius: 4)
 
+        label.textColor = .black
+
         customImageView.snp.makeConstraints {
             $0.size.equalTo(CGSize(width: 64, height: 90))
             $0.centerY.equalToSuperview()

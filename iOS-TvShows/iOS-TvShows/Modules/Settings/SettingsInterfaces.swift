@@ -14,9 +14,11 @@ import RxCocoa
 
 protocol SettingsWireframeInterface: WireframeInterface {
     func dismiss()
+    func openGallery(delegate: SettingsPresenter)
+    func goToLogin()
 }
 
-protocol SettingsViewInterface: ViewInterface {
+protocol SettingsViewInterface: ViewInterface, Progressable {
 }
 
 protocol SettingsPresenterInterface: PresenterInterface {
@@ -24,15 +26,21 @@ protocol SettingsPresenterInterface: PresenterInterface {
 }
 
 protocol SettingsInteractorInterface: InteractorInterface {
+    var user: Single<User> { get }
+    func updateUser(with data: Data) -> Single<User>
+    func deleteAuthInfo()
 }
 
 enum Settings {
 
     struct ViewOutput {
         let close: Signal<Void>
+        let changePhoto: Signal<Void>
+        let logout: Signal<Void>
     }
 
     struct ViewInput {
+        let user: Driver<User>
     }
 
 }
