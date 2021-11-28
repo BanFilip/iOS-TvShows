@@ -17,7 +17,7 @@ struct ShowTableCellItem: TableCellItem {
 extension ShowTableCellItem {
     func cell(from tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(ofType: ShowTableViewCell.self, for: indexPath)
-        cell.setData(with: show)
+        cell.configure(with: show)
         return cell
     }
 
@@ -32,23 +32,53 @@ extension ShowTableCellItem {
 
 class ShowTableViewCell: UITableViewCell {
 
-    var customImageView: UIImageView!
-    var label: UILabel!
+    private let customImageView = UIImageView()
+    private let label = UILabel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupUI()
+    }
 
-        backgroundColor = UIColor.TVShows.appWhite
-        customImageView = UIImageView()
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupUI()
+    }
+
+    func configure(with item: Show) {
+        let placeholderImage = UIImage.TVShows.Icons.showPlaceholder
+        label.text = item.title
+        customImageView.kf.setImage(
+            with: item.imageUrl.flatMap(URL.init),
+            placeholder: placeholderImage
+        )
+    }
+}
+
+private extension ShowTableViewCell {
+
+    func setupUI() {
+        addSubviews()
+        configureView()
+        configureSubviews()
+        defineConstraints()
+    }
+
+    func addSubviews() {
         contentView.addSubview(customImageView)
-        label = UILabel(with: UIFont.systemFont(ofSize: 17))
         contentView.addSubview(label)
+    }
 
+    func configureView() {
+        backgroundColor = UIColor.TVShows.appWhite
+    }
+
+    func configureSubviews() {
         customImageView.clipsToBounds = true
         customImageView.roundAllCorners(withRadius: 4)
+    }
 
-        label.textColor = .black
-
+    func defineConstraints() {
         customImageView.snp.makeConstraints {
             $0.size.equalTo(CGSize(width: 64, height: 90))
             $0.centerY.equalToSuperview()
@@ -60,20 +90,5 @@ class ShowTableViewCell: UITableViewCell {
             $0.trailing.equalToSuperview().inset(24)
             $0.centerY.equalToSuperview()
         }
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    func setData(with show: Show) {
-        let placeholderImage = UIImage.TVShows.Icons.showPlaceholder
-        label.text = show.title
-
-        guard let url = URL(string: show.imageUrl ?? "") else {
-            customImageView.image = placeholderImage
-            return
-        }
-        customImageView.kf.setImage(with: url, placeholder: placeholderImage, options: nil, completionHandler: nil)
     }
 }
