@@ -41,8 +41,12 @@ extension ShowsPresenter: ShowsPresenterInterface {
 
     func configure(with output: Shows.ViewOutput) -> Shows.ViewInput {
         handle(settings: output.settings)
+        let shows = fetchShows()
+        let items = shows
+            .map { [unowned self] in createItems(from: $0)}
+
         return Shows.ViewInput(
-            shows: createItems()
+            shows: items.map { $0 as [TableCellItem] }
         )
     }
 
@@ -54,16 +58,18 @@ extension ShowsPresenter: ShowsPresenterInterface {
             .disposed(by: disposeBag)
     }
 
-    func createItems() -> Driver<[TableCellItem]> {
-        interactor
+    func fetchShows() -> Driver<[Show]> {
+        return interactor
             .shows
             .handleLoadingAndError(with: view)
-            .asDriver(onErrorDriveWith: .never())
-            .map { [unowned self] in $0.map {
-                ShowTableCellItem(
-                    show: $0,
-                    didSelect: { [unowned wireframe] in wireframe.goToShowDetails(with: $0.show) }
-                )}
-            }
+            .asDriver(onErrorJustReturn: [])
+    }
+
+    func createItems(from shows: [Show]) -> [ShowTableCellItem] {
+        return shows.map {
+            return ShowTableCellItem(
+                show: $0,
+                didSelect: { [unowned self] in wireframe.goToShowDetails(with: $0.show) })
+        }
     }
 }

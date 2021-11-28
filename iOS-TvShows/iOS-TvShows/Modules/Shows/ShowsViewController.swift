@@ -16,10 +16,11 @@ final class ShowsViewController: UIViewController {
 
     // MARK: - Public properties -
 
-    var tableView: UITableView!
     var presenter: ShowsPresenterInterface!
 
     // MARK: - Private properties -
+
+    private let tableView = UITableView()
 
     private let disposeBag = DisposeBag()
 
@@ -48,27 +49,6 @@ extension ShowsViewController: ShowsViewInterface {
 
 private extension ShowsViewController {
 
-    func setupUI() {
-        title = "Shows"
-        navigationController?.styleNavBar(prefersLargeTitles: true)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage.TVShows.Icons.settings.withRenderingMode(.alwaysOriginal),
-            style: .plain,
-            target: nil,
-            action: nil
-        )
-
-        view.backgroundColor = UIColor.TVShows.appWhite
-        tableView = UITableView()
-        view.addSubview(tableView)
-        tableView.backgroundColor = UIColor.TVShows.appGrey
-        tableView.registerClass(cellOfType: ShowTableViewCell.self)
-
-        tableView.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
-        }
-    }
-
     func setupView() {
         guard let rightBarButton = navigationItem.rightBarButtonItem else { return }
         let output = Shows.ViewOutput(
@@ -80,9 +60,48 @@ private extension ShowsViewController {
 }
 
 private extension ShowsViewController {
+
     func handle(_ shows: Driver<[TableCellItem]>) {
         shows
             .drive(tableDataSource.rx.items)
             .disposed(by: disposeBag)
+    }
+}
+
+private extension ShowsViewController {
+
+    func setupUI() {
+        addSubviews()
+        configureView()
+        configureSubviews()
+        defineConstraints()
+    }
+
+    func addSubviews() {
+        view.addSubview(tableView)
+    }
+
+    func configureView() {
+        title = "Shows"
+        navigationController?.styleNavBar(prefersLargeTitles: true)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage.TVShows.Icons.settings.withRenderingMode(.alwaysOriginal),
+            style: .plain,
+            target: nil,
+            action: nil
+        )
+
+        view.backgroundColor = UIColor.TVShows.appWhite
+    }
+
+    func configureSubviews() {
+        tableView.backgroundColor = UIColor.TVShows.appGrey
+        tableView.registerClass(cellOfType: ShowTableViewCell.self)
+    }
+
+    func defineConstraints() {
+        tableView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
 }
