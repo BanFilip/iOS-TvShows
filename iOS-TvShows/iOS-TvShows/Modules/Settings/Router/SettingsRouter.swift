@@ -18,24 +18,11 @@ class SettingsRouter: Router {
         )
     }
 
-    static func updateUser(with data: Data) -> SettingsRouter {
-        let dict = encodeData(data: data)
+    static func updateUser() -> SettingsRouter {
         return SettingsRouter(
             path: "/users",
             method: .put,
-            encodableParams: EncodableParams(parameters: dict)
+            encoding: URLEncoding.default
         )
     }
-
-    static func encodeData(data: Data) -> [String: Any] {
-        guard
-            let data = try? JSONEncoder().encode(data),
-            let json = try? JSONSerialization.jsonObject(with: data),
-            let dict = json as? [String: Any]
-        else {
-            return [:]
-        }
-        return dict
-    }
 }
-

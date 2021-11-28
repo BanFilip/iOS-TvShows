@@ -35,6 +35,17 @@ public protocol APIServiceable: AnyObject {
         completion: @escaping (AFResult<Void>) -> Void
     ) -> DataRequest
 
+    @discardableResult
+    func requestUpload<T: Decodable>(
+        _: T.Type,
+        keyPath: String?,
+        decoder: JSONDecoder,
+        router: Routable,
+        session: Session,
+        multipartFormData: MultipartFormData,
+        completion: @escaping (AFResult<T>) -> Void
+    ) -> DataRequest
+
 }
 
 public extension APIServiceable {
@@ -45,6 +56,18 @@ public extension APIServiceable {
     ///   - session: Current session
     func prepareRequest(for router: Routable, session: Session) -> DataRequest {
         return session.request(router).validate()
+    }
+
+    func prepareUpload(
+        session: Session,
+        multipartFormData: MultipartFormData,
+        url: String,
+        method: HTTPMethod
+    ) -> DataRequest {
+        return session.upload(
+            multipartFormData: multipartFormData,
+            to: url, method: method
+        ).validate()
     }
 
 }
@@ -87,6 +110,24 @@ open class APIService: APIServiceable {
             .response { completion($0.result.mapToVoid) }
     }
 
+    @discardableResult
+    open func requestUpload<T: Decodable>(
+        _: T.Type,
+        keyPath: String? = nil,
+        decoder: JSONDecoder = JSONDecoder(),
+        router: Routable,
+        session: Session,
+        multipartFormData: MultipartFormData,
+        completion: @escaping (AFResult<T>) -> Void
+    ) -> DataRequest {
+        return prepareUpload(
+            session: session,
+            multipartFormData: multipartFormData,
+            url: router.baseUrl + router.path,
+            method: router.method
+        )
+        .responseDecodable(keyPath: keyPath, decoder: decoder) { completion($0.result) }
+    }
 }
 
 ///

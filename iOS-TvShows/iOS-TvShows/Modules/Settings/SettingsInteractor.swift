@@ -10,6 +10,7 @@
 
 import Foundation
 import RxSwift
+import Alamofire
 
 final class SettingsInteractor {
 
@@ -42,17 +43,29 @@ extension SettingsInteractor: SettingsInteractorInterface {
             .map { $0.user }
     }
 
-    func updateUser(with data: Data) -> Single<User> {
-        service.rx
-            .request(
+    func updateUser(with image: UIImage) -> Single<User> {
+        guard let imageData = image.jpegData(compressionQuality: 0.7) else {
+            return .never()
+        }
+        let requestData = MultipartFormData()
+        requestData.append(
+            imageData,
+            withName: "image",
+            fileName: "image.jpg",
+            mimeType: "image/jpg"
+        )
+        return service.rx
+            .requestUpload(
                 UserResponse.self,
-                router: SettingsRouter.updateUser(with: data),
-                session: sessionManager.session
+                router: SettingsRouter.updateUser(),
+                session: sessionManager.session,
+                multipartFormData: requestData
             )
             .map { $0.user }
     }
 
     func deleteAuthInfo() {
-        authStorage.deleteAuthInfo()
+        authStorage
+            .deleteAuthInfo()
     }
 }

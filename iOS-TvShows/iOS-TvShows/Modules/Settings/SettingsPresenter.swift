@@ -21,6 +21,8 @@ final class SettingsPresenter: NSObject {
     private let wireframe: SettingsWireframeInterface
     private let disposeBag: DisposeBag
 
+    private let userPublishRelay = PublishRelay<User>()
+
     // MARK: - Lifecycle -
 
     init(
@@ -43,8 +45,9 @@ extension SettingsPresenter: SettingsPresenterInterface {
         onCloseTapped(close: output.close)
         onChangePhotoTapped(changePhoto: output.changePhoto)
         onLogoutTapped(logout: output.logout)
+        fetchUser()
         return Settings.ViewInput(
-            user: user
+            user: userPublishRelay.asDriver(onErrorDriveWith: .never())
         )
     }
 
@@ -73,29 +76,43 @@ extension SettingsPresenter: SettingsPresenterInterface {
             .disposed(by: disposeBag)
     }
 
-    var user: Driver<User> {
+    func fetchUser() {
         interactor
             .user
             .handleLoadingAndError(with: view)
             .asDriver(onErrorDriveWith: .never())
+            .drive(onNext: { [unowned self] user in
+                userPublishRelay.accept(user)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
-extension SettingsPresenter: UIImagePickerControllerDelegate {
+private extension SettingsPresenter {
+
+    func updateUser(with image: UIImage) {
+        interactor
+            .updateUser(with: image)
+            .handleLoadingAndError(with: view)
+            .asDriver(onErrorDriveWith: .never())
+            .drive(onNext: { [unowned self] user in
+                userPublishRelay.accept(user)
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+extension SettingsPresenter: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     func imagePickerController(
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
     ) {
-        if
-            let image = info[UIImagePickerController.InfoKey(
+        if let image = info[UIImagePickerController.InfoKey(
                 rawValue: "UIImagePickerControllerEditedImage"
             )] as? UIImage {
+            updateUser(with: image)
         }
-        picker.dismiss(animated: true, completion: nil)
-    }
-
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
 }

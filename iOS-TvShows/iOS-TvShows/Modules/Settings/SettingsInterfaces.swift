@@ -27,7 +27,7 @@ protocol SettingsPresenterInterface: PresenterInterface {
 
 protocol SettingsInteractorInterface: InteractorInterface {
     var user: Single<User> { get }
-    func updateUser(with data: Data) -> Single<User>
+    func updateUser(with image: UIImage) -> Single<User>
     func deleteAuthInfo()
 }
 
