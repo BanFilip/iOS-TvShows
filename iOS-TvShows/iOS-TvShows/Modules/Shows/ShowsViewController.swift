@@ -107,6 +107,7 @@ private extension ShowsViewController {
         )
 
         view.backgroundColor = UIColor.TVShows.appWhite
+        extendedLayoutIncludesOpaqueBars = true
     }
 
     func configureSubviews() {
@@ -117,7 +118,7 @@ private extension ShowsViewController {
     func defineConstraints() {
         tableView.contentInsetAdjustmentBehavior = .always
         tableView.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.edges.equalToSuperview()
         }
     }
 }
