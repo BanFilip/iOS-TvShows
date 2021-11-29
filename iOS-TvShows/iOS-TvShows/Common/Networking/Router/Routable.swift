@@ -29,18 +29,7 @@ public protocol Routable: URLRequestConvertible {
 
 public extension Routable {
 
-    func asURLRequest() throws -> URLRequest {
-        let url = try pathUrl()
-        var request = try URLRequest(url: url, method: method, headers: headers)
-        try encodableParams.forEach { request = try $0.encode(request) }
-        return request
-    }
-
-}
-
-private extension Routable {
-
-    func pathUrl() throws -> URL {
+    func asURL() throws -> URL {
         /// Fully specified path wih base URL
         if path.starts(with: "http") {
             return try path.asURL()
@@ -49,6 +38,16 @@ private extension Routable {
         return try baseUrl
             .asURL()
             .appendingPathComponent(path)
+    }
+}
+
+public extension Routable {
+
+    func asURLRequest() throws -> URLRequest {
+        let url = try asURL()
+        var request = try URLRequest(url: url, method: method, headers: headers)
+        try encodableParams.forEach { request = try $0.encode(request) }
+        return request
     }
 
 }

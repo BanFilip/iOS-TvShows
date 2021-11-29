@@ -10,14 +10,6 @@ import Alamofire
 
 class ShowsRouter: Router {
 
-    static var shows: ShowsRouter {
-        return ShowsRouter(
-            path: "/shows",
-            method: .get,
-            encoding: URLEncoding.default
-        )
-    }
-
     static var topRatedShows: ShowsRouter {
         return ShowsRouter(
             path: "/shows/top_rated",
@@ -31,6 +23,14 @@ class ShowsRouter: Router {
             path: "/shows/\(id)",
             method: .get,
             encoding: URLEncoding.default
+        )
+    }
+
+    static func shows(with params: [String: Int]) -> ShowsRouter {
+        return ShowsRouter(
+            path: "/shows",
+            method: .get,
+            parameters: params
         )
     }
 }

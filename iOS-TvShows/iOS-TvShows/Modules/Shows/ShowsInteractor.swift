@@ -10,6 +10,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 final class ShowsInteractor {
 
@@ -29,13 +30,53 @@ final class ShowsInteractor {
 
 extension ShowsInteractor: ShowsInteractorInterface {
 
-    var shows: Single<[Show]> {
-        service.rx
+    typealias Container = [Show]
+    typealias Page = ShowsResponse
+    typealias PagingEvent = Paging.Event<Container>
+
+    private func shows(with pagination: Pagination?) -> Single<ShowsResponse> {
+        var params: [String: Int] = [:]
+        if let lastPage = pagination {
+            params = [
+                "page": lastPage.page + 1,
+                "items": lastPage.items
+            ]
+        }
+        return service.rx
             .request(
                 ShowsResponse.self,
-                router: ShowsRouter.shows,
+                router: ShowsRouter.shows(with: params),
                 session: sessionManager.session
             )
-            .map { $0.shows }
+    }
+
+    func showsPaging(loadNextPage: Driver<Void>, reload: Driver<Void>) -> Observable<[Show]> {
+        let events = Driver
+            .merge(
+                loadNextPage.mapTo(PagingEvent.nextPage),
+                reload.startWith(()).mapTo(PagingEvent.reload)
+            )
+
+        func nextPage(container: Container, lastPage: Page?) -> Single<Page> {
+            return shows(with: lastPage?.pagination)
+        }
+
+        func accumulator(_ container: Container, _ page: Page) -> Container {
+            return container + page.shows
+        }
+
+        func hasNext(container: Container, lastPage: Page) -> Bool {
+            return lastPage.pagination.page < lastPage.pagination.pages
+        }
+
+        return Paging
+            .page(
+                make: nextPage,
+                startingWith: [],
+                joining: accumulator,
+                while: hasNext,
+                on: events.asObservable()
+            )
+            .map { $0.container }
     }
 }

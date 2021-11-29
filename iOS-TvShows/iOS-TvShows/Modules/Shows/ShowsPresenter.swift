@@ -40,17 +40,25 @@ final class ShowsPresenter {
 extension ShowsPresenter: ShowsPresenterInterface {
 
     func configure(with output: Shows.ViewOutput) -> Shows.ViewInput {
-        handle(settings: output.settings)
-        let shows = fetchShows()
-        let items = shows
+        onSettingsTapped(output.settings)
+
+        let paginatedShows = interactor
+            .showsPaging(
+                loadNextPage: output.willDisplayLastCell,
+                reload: output.pullToRefresh
+            )
+            .handleLoadingAndError(with: view)
+
+        let items = paginatedShows
             .map { [unowned self] in createItems(from: $0)}
+            .asDriver(onErrorJustReturn: [])
 
         return Shows.ViewInput(
             shows: items.map { $0 as [TableCellItem] }
         )
     }
 
-    func handle(settings: Signal<Void>) {
+    func onSettingsTapped(_ settings: Signal<Void>) {
         settings
             .emit(onNext: { [unowned self] in
                 wireframe.goToSettings()
@@ -58,18 +66,12 @@ extension ShowsPresenter: ShowsPresenterInterface {
             .disposed(by: disposeBag)
     }
 
-    func fetchShows() -> Driver<[Show]> {
-        return interactor
-            .shows
-            .handleLoadingAndError(with: view)
-            .asDriver(onErrorJustReturn: [])
-    }
-
     func createItems(from shows: [Show]) -> [ShowTableCellItem] {
         return shows.map {
             return ShowTableCellItem(
                 show: $0,
-                didSelect: { [unowned self] in wireframe.goToShowDetails(with: $0.show) })
+                didSelect: { [unowned self] in wireframe.goToShowDetails(with: $0.show) }
+            )
         }
     }
 }
