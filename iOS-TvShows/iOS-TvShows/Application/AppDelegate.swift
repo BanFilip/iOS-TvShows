@@ -13,18 +13,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let rootNavigationController = UINavigationController()
-        UITabBar.appearance().tintColor = UIColor.TVShows.appPurple
-        UINavigationBar.appearance().tintColor = UIColor.TVShows.appPurple
+        startApp()
+        styleAppearances()
 
-        window = UIWindow(frame: UIScreen.main.bounds)
-        guard let window = window else {
-            return false
-        }
-
-        rootNavigationController.setRootWireframe(LoginWireframe())
-        window.rootViewController = rootNavigationController
-        window.makeKeyAndVisible()
         return true
+    }
+}
+
+private extension AppDelegate {
+
+    func startApp() {
+        let rootNavigationController = UINavigationController()
+        if let authInfo = AuthStorage.instance.fetchAuthInfo() {
+            SessionManager.default.authorizationAdapter = AuthAdapter(with: authInfo)
+            rootNavigationController.setRootWireframe(HomeWireframe())
+        } else {
+            rootNavigationController.setRootWireframe(LoginWireframe())
+        }
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = rootNavigationController
+        window?.makeKeyAndVisible()
+    }
+
+    func styleAppearances() {
+        UITabBar.appearance().tintColor = UIColor.TVShows.appPurple
+        UITabBar.appearance().barTintColor = UIColor.TVShows.appGrey
+        UINavigationBar.appearance().tintColor = UIColor.TVShows.appPurple
     }
 }

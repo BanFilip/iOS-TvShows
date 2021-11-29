@@ -12,7 +12,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class SettingsPresenter {
+final class SettingsPresenter: NSObject {
 
     // MARK: - Private properties -
 
@@ -20,6 +20,8 @@ final class SettingsPresenter {
     private let interactor: SettingsInteractorInterface
     private let wireframe: SettingsWireframeInterface
     private let disposeBag: DisposeBag
+
+    private let userPublishRelay = PublishRelay<User>()
 
     // MARK: - Lifecycle -
 
@@ -40,11 +42,19 @@ final class SettingsPresenter {
 extension SettingsPresenter: SettingsPresenterInterface {
 
     func configure(with output: Settings.ViewOutput) -> Settings.ViewInput {
-        handle(close: output.close)
-        return Settings.ViewInput()
+        onCloseTapped(close: output.close)
+        onChangePhotoTapped(output.changePhoto)
+        onLogoutTapped(logout: output.logout)
+        let user = Driver.merge(
+            fetchUser(),
+            userPublishRelay.asDriver(onErrorDriveWith: .never())
+        )
+        return Settings.ViewInput(
+            user: user
+        )
     }
 
-    func handle(close: Signal<Void>) {
+    func onCloseTapped(close: Signal<Void>) {
         close
             .emit(onNext: { [unowned self] _ in
                 wireframe.dismiss()
@@ -52,4 +62,54 @@ extension SettingsPresenter: SettingsPresenterInterface {
             .disposed(by: disposeBag)
     }
 
+    func onChangePhotoTapped(_ changePhoto: Signal<Void>) {
+        changePhoto
+            .emit(onNext: { [unowned self] _ in
+                wireframe.openGallery(delegate: self)
+            })
+            .disposed(by: disposeBag)
+    }
+
+    func onLogoutTapped(logout: Signal<Void>) {
+        logout
+            .emit(onNext: { [unowned self] _ in
+                interactor.deleteAuthInfo()
+                wireframe.goToLogin()
+            })
+            .disposed(by: disposeBag)
+    }
+
+    func fetchUser() -> Driver<User> {
+        interactor
+            .user
+            .handleLoadingAndError(with: view)
+            .asDriver(onErrorDriveWith: .never())
+    }
+}
+
+private extension SettingsPresenter {
+
+    func updateUser(with image: UIImage) {
+        interactor
+            .updateUser(with: image)
+            .handleLoadingAndError(with: view)
+            .asDriver(onErrorDriveWith: .never())
+            .drive(onNext: { [unowned self] user in
+                userPublishRelay.accept(user)
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+extension SettingsPresenter: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            updateUser(with: image)
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
 }

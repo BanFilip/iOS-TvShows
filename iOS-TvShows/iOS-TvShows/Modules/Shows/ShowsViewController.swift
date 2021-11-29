@@ -12,15 +12,27 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class ShowsViewController: UIViewController {
+final class ShowsViewController: UIViewController, Refreshable {
 
     // MARK: - Public properties -
+
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        tableView.refreshControl = refreshControl
+        return refreshControl
+    }()
 
     var presenter: ShowsPresenterInterface!
 
     // MARK: - Private properties -
 
+    private let tableView = UITableView()
+
     private let disposeBag = DisposeBag()
+
+    private lazy var tableDataSource: TableDataSourceDelegate = {
+        return TableDataSourceDelegate(tableView: tableView)
+    }()
 
     // MARK: - Lifecycle -
 
@@ -43,7 +55,48 @@ extension ShowsViewController: ShowsViewInterface {
 
 private extension ShowsViewController {
 
+    func setupView() {
+        guard let rightBarButton = navigationItem.rightBarButtonItem else { return }
+        let pullToRefresh = refreshControl.rx
+            .controlEvent(.valueChanged)
+            .asDriver()
+            .map { _ in }
+
+        let willDisplayLastCell = tableView.rx
+            .reachedBottomOnceWith(restart: pullToRefresh)
+
+        let output = Shows.ViewOutput(
+            settings: rightBarButton.rx.tap.asSignal(),
+            pullToRefresh: pullToRefresh,
+            willDisplayLastCell: willDisplayLastCell
+        )
+        let input = presenter.configure(with: output)
+
+        handle(shows: input.shows)
+    }
+
+    func handle(shows: Driver<[TableCellItem]>) {
+        shows
+            .do(onNext: { [unowned self] _ in self.endRefreshing() })
+            .drive(tableDataSource.rx.items)
+            .disposed(by: disposeBag)
+    }
+}
+
+private extension ShowsViewController {
+
     func setupUI() {
+        addSubviews()
+        configureView()
+        configureSubviews()
+        defineConstraints()
+    }
+
+    func addSubviews() {
+        view.addSubview(tableView)
+    }
+
+    func configureView() {
         title = "Shows"
         navigationController?.styleNavBar(prefersLargeTitles: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -54,14 +107,18 @@ private extension ShowsViewController {
         )
 
         view.backgroundColor = UIColor.TVShows.appWhite
+        extendedLayoutIncludesOpaqueBars = true
     }
 
-    func setupView() {
-        guard let rightBarButton = navigationItem.rightBarButtonItem else { return }
-        let output = Shows.ViewOutput(
-            settings: rightBarButton.rx.tap.asSignal()
-        )
+    func configureSubviews() {
+        tableView.backgroundColor = UIColor.TVShows.appGrey
+        tableView.registerClass(cellOfType: ShowTableViewCell.self)
+    }
 
-        let input = presenter.configure(with: output)
+    func defineConstraints() {
+        tableView.contentInsetAdjustmentBehavior = .always
+        tableView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 }

@@ -16,6 +16,8 @@ final class HomeTabBarController: UITabBarController {
 
     // MARK: - Public properties -
 
+    var presenter: HomePresenterInterface!
+
     // MARK: - Private properties -
 
     private let disposeBag = DisposeBag()
@@ -31,6 +33,7 @@ final class HomeTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.TVShows.appWhite
     }
 
     override func viewWillAppear(_ animated: Bool) {
