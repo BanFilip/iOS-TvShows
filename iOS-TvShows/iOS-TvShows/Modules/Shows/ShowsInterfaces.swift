@@ -25,13 +25,15 @@ protocol ShowsPresenterInterface: PresenterInterface {
 }
 
 protocol ShowsInteractorInterface: InteractorInterface {
-    var shows: Single<[Show]> { get }
+    func shows(with pagination: Pagination?) -> Single<ShowsResponse>
 }
 
 enum Shows {
 
     struct ViewOutput {
         let settings: Signal<Void>
+        let pullToRefresh: Driver<Void>
+        let willDisplayLastCell: Driver<Void>
     }
 
     struct ViewInput {

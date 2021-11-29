@@ -41,8 +41,11 @@ extension ShowsPresenter: ShowsPresenterInterface {
 
     func configure(with output: Shows.ViewOutput) -> Shows.ViewInput {
         handle(settings: output.settings)
-        let shows = fetchShows()
-        let items = shows
+        let paginatedShows = showsPaging(
+            loadNextPage: output.willDisplayLastCell,
+            reload: output.pullToRefresh
+        )
+        let items = paginatedShows
             .map { [unowned self] in createItems(from: $0)}
 
         return Shows.ViewInput(
@@ -58,18 +61,52 @@ extension ShowsPresenter: ShowsPresenterInterface {
             .disposed(by: disposeBag)
     }
 
-    func fetchShows() -> Driver<[Show]> {
-        return interactor
-            .shows
-            .handleLoadingAndError(with: view)
-            .asDriver(onErrorJustReturn: [])
-    }
-
     func createItems(from shows: [Show]) -> [ShowTableCellItem] {
         return shows.map {
             return ShowTableCellItem(
                 show: $0,
-                didSelect: { [unowned self] in wireframe.goToShowDetails(with: $0.show) })
+                didSelect: { [unowned self] in wireframe.goToShowDetails(with: $0.show) }
+            )
         }
+    }
+}
+
+extension ShowsPresenter {
+    typealias Container = [Show]
+    typealias Page = ShowsResponse
+    typealias PagingEvent = Paging.Event<Container>
+
+    func showsPaging(loadNextPage: Driver<Void>, reload: Driver<Void>) -> Driver<[Show]> {
+        let events = Driver
+            .merge(
+                loadNextPage.mapTo(PagingEvent.nextPage),
+                reload.startWith(()).mapTo(PagingEvent.reload)
+            )
+
+        func nextPage(container: Container, lastPage: Page?) -> Single<Page> {
+            return interactor
+                .shows(with: lastPage?.pagination)
+        }
+
+        func accumulator(_ container: Container, _ page: Page) -> Container {
+            return container + page.shows
+        }
+
+        func hasNext(container: Container, lastPage: Page) -> Bool {
+            return lastPage.pagination.page < lastPage.pagination.pages
+        }
+
+        let response = Paging
+            .page(
+                make: nextPage,
+                startingWith: [],
+                joining: accumulator,
+                while: hasNext,
+                on: events.asObservable()
+            )
+
+        return response
+            .map { $0.container }
+            .asDriver(onErrorJustReturn: [])
     }
 }

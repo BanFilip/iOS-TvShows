@@ -12,9 +12,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class ShowsViewController: UIViewController {
+final class ShowsViewController: UIViewController, Refreshable {
 
     // MARK: - Public properties -
+
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        tableView.refreshControl = refreshControl
+        return refreshControl
+    }()
 
     var presenter: ShowsPresenterInterface!
 
@@ -51,18 +57,27 @@ private extension ShowsViewController {
 
     func setupView() {
         guard let rightBarButton = navigationItem.rightBarButtonItem else { return }
+        let pullToRefresh = refreshControl.rx
+            .controlEvent(.valueChanged)
+            .asDriver()
+            .map { _ in }
+
+        let willDisplayLastCell = tableView.rx
+            .reachedBottomOnceWith(restart: pullToRefresh)
+
         let output = Shows.ViewOutput(
-            settings: rightBarButton.rx.tap.asSignal()
+            settings: rightBarButton.rx.tap.asSignal(),
+            pullToRefresh: pullToRefresh,
+            willDisplayLastCell: willDisplayLastCell
         )
         let input = presenter.configure(with: output)
-        handle(input.shows)
+
+        handle(shows: input.shows)
     }
-}
 
-private extension ShowsViewController {
-
-    func handle(_ shows: Driver<[TableCellItem]>) {
+    func handle(shows: Driver<[TableCellItem]>) {
         shows
+            .do(onNext: { [unowned self] _ in self.endRefreshing() })
             .drive(tableDataSource.rx.items)
             .disposed(by: disposeBag)
     }

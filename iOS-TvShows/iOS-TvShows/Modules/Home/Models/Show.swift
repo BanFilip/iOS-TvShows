@@ -23,8 +23,31 @@ struct Show: Codable {
     }
 }
 
-struct ShowsResponse: Codable {
+struct Pagination: Codable {
+    let page: Int
+    let items: Int
+    let pages: Int
+}
+
+struct ShowsResponse: Decodable {
     let shows: [Show]
+    let pagination: Pagination
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        shows = try values.decode([Show].self, forKey: .shows)
+        let metaKeys = try values.nestedContainer(keyedBy: MetaKeys.self, forKey: .meta)
+        pagination = try metaKeys.decode(Pagination.self, forKey: .pagination)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case shows
+        case meta
+    }
+
+    enum MetaKeys: String, CodingKey {
+        case pagination
+    }
 }
 
 struct ShowResponse: Codable {

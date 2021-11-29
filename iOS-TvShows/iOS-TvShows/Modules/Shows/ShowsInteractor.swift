@@ -29,13 +29,19 @@ final class ShowsInteractor {
 
 extension ShowsInteractor: ShowsInteractorInterface {
 
-    var shows: Single<[Show]> {
-        service.rx
+    func shows(with pagination: Pagination?) -> Single<ShowsResponse> {
+        var params: [String: Int] = [:]
+        if let lastPage = pagination {
+            params = [
+                "page": lastPage.page + 1,
+                "items": lastPage.items
+            ]
+        }
+        return service.rx
             .request(
                 ShowsResponse.self,
-                router: ShowsRouter.shows,
+                router: ShowsRouter.shows(with: params),
                 session: sessionManager.session
             )
-            .map { $0.shows }
     }
 }
