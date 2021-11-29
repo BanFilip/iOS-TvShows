@@ -64,4 +64,27 @@ public extension Reactive where Base: APIServiceable {
         }
     }
 
+    func requestUpload<T: Decodable>(
+        _: T.Type,
+        keyPath: String? = nil,
+        decoder: JSONDecoder = JSONDecoder(),
+        router: Routable,
+        session: Session,
+        multipartFormData: MultipartFormData
+    ) -> Single<T> {
+        return Single<T>.create { [weak base] single -> Disposable in
+            let request = base?.requestUpload(
+                T.self,
+                keyPath: keyPath,
+                decoder: decoder,
+                router: router,
+                session: session,
+                multipartFormData: multipartFormData,
+                completion: { single($0.toSingleEvent) }
+            )
+
+            return Disposables.create { request?.cancel() }
+        }
+    }
+
 }

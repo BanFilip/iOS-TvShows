@@ -11,4 +11,5 @@ extension UIColor.TVShows {
 	static var appWhite: UIColor { return UIColor(named: "appWhite", in: .main, compatibleWith: nil)! }
 	static var appPurple: UIColor { return UIColor(named: "appPurple", in: .main, compatibleWith: nil)! }
 	static var accentColor: UIColor { return UIColor(named: "AccentColor", in: .main, compatibleWith: nil)! }
+    static var appGrey: UIColor { return UIColor(named: "appGrey", in: .main, compatibleWith: nil)! }
 }
