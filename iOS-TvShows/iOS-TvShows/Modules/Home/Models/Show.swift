@@ -53,3 +53,7 @@ struct ShowsResponse: Decodable {
 struct ShowResponse: Codable {
     let show: Show
 }
+
+struct TopRatedResponse: Codable {
+    let shows: [Show]
+}

@@ -12,9 +12,30 @@ import Foundation
 import RxSwift
 
 final class TopRatedInteractor {
+
+    private let service: APIService
+    private let sessionManager: SessionManager
+
+    init(
+        service: APIService = APIService.instance,
+        sessionManager: SessionManager = .default
+    ) {
+        self.service = service
+        self.sessionManager = sessionManager
+    }
 }
 
 // MARK: - Extensions -
 
 extension TopRatedInteractor: TopRatedInteractorInterface {
+
+    func fetchShows() -> Single<[Show]> {
+        service.rx
+            .request(
+                TopRatedResponse.self,
+                router: ShowsRouter.topRatedShows,
+                session: sessionManager.session
+            )
+            .map { $0.shows }
+    }
 }

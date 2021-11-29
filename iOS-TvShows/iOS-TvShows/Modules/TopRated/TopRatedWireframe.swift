@@ -32,6 +32,11 @@ final class TopRatedWireframe: BaseWireframe<TopRatedViewController> {
 // MARK: - Extensions -
 
 extension TopRatedWireframe: TopRatedWireframeInterface {
+
+    func goToShowDetails(with model: Show) {
+        navigationController?.pushWireframe(ShowDetailsWireframe(with: model))
+    }
+
     func goToSettings() {
         navigationController?.present(
             UINavigationController(rootViewController: SettingsWireframe().viewController),

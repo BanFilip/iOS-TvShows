@@ -20,7 +20,13 @@ final class TopRatedViewController: UIViewController {
 
     // MARK: - Private properties -
 
+    private let tableView = UITableView()
+
     private let disposeBag = DisposeBag()
+
+    private lazy var tableDataSource: TableDataSourceDelegate = {
+        return TableDataSourceDelegate(tableView: tableView)
+    }()
 
     // MARK: - Lifecycle -
 
@@ -43,7 +49,37 @@ extension TopRatedViewController: TopRatedViewInterface {
 
 private extension TopRatedViewController {
 
+    func setupView() {
+        guard let rightBarButton = navigationItem.rightBarButtonItem else { return }
+        let output = TopRated.ViewOutput(
+            settings: rightBarButton.rx.tap.asSignal()
+        )
+
+        let input = presenter.configure(with: output)
+        handle(shows: input.shows)
+    }
+
+    func handle(shows: Driver<[TableCellItem]>) {
+        shows
+            .drive(tableDataSource.rx.items)
+            .disposed(by: disposeBag)
+    }
+}
+
+private extension TopRatedViewController {
+
     func setupUI() {
+        addSubviews()
+        configureView()
+        configureSubviews()
+        defineConstraints()
+    }
+
+    func addSubviews() {
+        view.addSubview(tableView)
+    }
+
+    func configureView() {
         title = "Top Rated"
         navigationController?.styleNavBar(prefersLargeTitles: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -56,12 +92,15 @@ private extension TopRatedViewController {
         view.backgroundColor = UIColor.TVShows.appWhite
     }
 
-    func setupView() {
-        guard let rightBarButton = navigationItem.rightBarButtonItem else { return }
-        let output = TopRated.ViewOutput(
-            settings: rightBarButton.rx.tap.asSignal()
-        )
+    func configureSubviews() {
+        tableView.backgroundColor = UIColor.TVShows.appGrey
+        tableView.registerClass(cellOfType: ShowTableViewCell.self)
+    }
 
-        let input = presenter.configure(with: output)
+    func defineConstraints() {
+        tableView.contentInsetAdjustmentBehavior = .always
+        tableView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 }
