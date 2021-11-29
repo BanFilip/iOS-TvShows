@@ -63,4 +63,3 @@ extension LoginInteractor: LoginInteractorInterface {
             .map { _ in () }
     }
 }
-  

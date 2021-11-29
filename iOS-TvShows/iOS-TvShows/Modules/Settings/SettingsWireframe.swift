@@ -35,4 +35,21 @@ extension SettingsWireframe: SettingsWireframeInterface {
     func dismiss() {
         navigationController?.dismiss(animated: true, completion: nil)
     }
+
+    func openGallery(delegate: SettingsPresenter) {
+        let picker = UIImagePickerController()
+        picker.delegate = delegate
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        navigationController?.present(picker, animated: true, completion: nil)
+    }
+
+    func goToLogin() {
+        navigationController?.dismiss(
+            animated: true,
+            completion: { () in
+                NotificationCenter.default.post(.didLogout)
+            }
+        )
+    }
 }

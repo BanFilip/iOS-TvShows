@@ -5,6 +5,8 @@
 //  Created by Filip Ban on 08.11.2021..
 //
 
+import Foundation
+
 enum Constants {
 
     enum Keychain {
@@ -30,4 +32,8 @@ enum Constants {
         static let baseUrl = "https://tv-shows.infinum.academy"
     }
 
+}
+
+extension Notification {
+    static let didLogout = Notification(name: .init("didLogout"))
 }
