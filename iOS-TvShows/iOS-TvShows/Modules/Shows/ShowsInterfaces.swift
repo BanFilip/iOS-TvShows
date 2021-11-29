@@ -25,7 +25,7 @@ protocol ShowsPresenterInterface: PresenterInterface {
 }
 
 protocol ShowsInteractorInterface: InteractorInterface {
-    func shows(with pagination: Pagination?) -> Single<ShowsResponse>
+    func showsPaging(loadNextPage: Driver<Void>, reload: Driver<Void>) -> Observable<[Show]>
 }
 
 enum Shows {

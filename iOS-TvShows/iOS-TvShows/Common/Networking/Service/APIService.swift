@@ -59,14 +59,13 @@ public extension APIServiceable {
     }
 
     func prepareUpload(
+        for router: Routable,
         session: Session,
-        multipartFormData: MultipartFormData,
-        url: String,
-        method: HTTPMethod
+        multipartFormData: MultipartFormData
     ) -> DataRequest {
         return session.upload(
             multipartFormData: multipartFormData,
-            to: url, method: method
+            with: router
         ).validate()
     }
 
@@ -121,10 +120,9 @@ open class APIService: APIServiceable {
         completion: @escaping (AFResult<T>) -> Void
     ) -> DataRequest {
         return prepareUpload(
+            for: router,
             session: session,
-            multipartFormData: multipartFormData,
-            url: router.baseUrl + router.path,
-            method: router.method
+            multipartFormData: multipartFormData
         )
         .responseDecodable(keyPath: keyPath, decoder: decoder) { completion($0.result) }
     }

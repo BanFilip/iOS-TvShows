@@ -40,6 +40,7 @@
 		B64AC23D27540B3C005854D8 /* Paging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC23C27540B3C005854D8 /* Paging.swift */; };
 		B64AC24027540B76005854D8 /* Observable+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC23F27540B76005854D8 /* Observable+Utility.swift */; };
 		B64AC24327540D12005854D8 /* Driver+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC24227540D12005854D8 /* Driver+Utility.swift */; };
+		B64AC2452754FA4F005854D8 /* Observable+Progressable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC2442754FA4F005854D8 /* Observable+Progressable.swift */; };
 		B6B38526273A921200CFE02C /* LoginViewController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38525273A921200CFE02C /* LoginViewController+Design.swift */; };
 		B6B38529273A923600CFE02C /* ConstructViewsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38528273A923600CFE02C /* ConstructViewsProtocol.swift */; };
 		B6B38530273A955200CFE02C /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B3852F273A955200CFE02C /* UINavigationController+Extensions.swift */; };
@@ -152,6 +153,7 @@
 		B64AC23C27540B3C005854D8 /* Paging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paging.swift; sourceTree = "<group>"; };
 		B64AC23F27540B76005854D8 /* Observable+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Utility.swift"; sourceTree = "<group>"; };
 		B64AC24227540D12005854D8 /* Driver+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Driver+Utility.swift"; sourceTree = "<group>"; };
+		B64AC2442754FA4F005854D8 /* Observable+Progressable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Progressable.swift"; sourceTree = "<group>"; };
 		B6B38523273A743300CFE02C /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extensions.swift"; sourceTree = "<group>"; };
 		B6B38525273A921200CFE02C /* LoginViewController+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Design.swift"; sourceTree = "<group>"; };
 		B6B38528273A923600CFE02C /* ConstructViewsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructViewsProtocol.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				B64AC23F27540B76005854D8 /* Observable+Utility.swift */,
+				B64AC2442754FA4F005854D8 /* Observable+Progressable.swift */,
 			);
 			path = Observable;
 			sourceTree = "<group>";
@@ -986,6 +989,7 @@
 				B6E71C5F27394B90009123A3 /* Result+Map.swift in Sources */,
 				B6E71C6227394CE9009123A3 /* LoginRouter.swift in Sources */,
 				B6E71C7327396431009123A3 /* DataRequest+Decodable.swift in Sources */,
+				B64AC2452754FA4F005854D8 /* Observable+Progressable.swift in Sources */,
 				B64AC23A27540AA5005854D8 /* Refreshable.swift in Sources */,
 				B6B385FF273C447A00CFE02C /* BaseButton+Design.swift in Sources */,
 				B6C90E1627428B0B00504E73 /* UIImageExtension.swift in Sources */,

@@ -45,7 +45,7 @@ extension SettingsInteractor: SettingsInteractorInterface {
 
     func updateUser(with image: UIImage) -> Single<User> {
         guard let imageData = image.jpegData(compressionQuality: 0.7) else {
-            return .never()
+            return .error(NSError())
         }
         let requestData = MultipartFormData()
         requestData.append(

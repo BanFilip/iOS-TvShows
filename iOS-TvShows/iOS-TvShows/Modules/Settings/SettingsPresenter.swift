@@ -43,11 +43,14 @@ extension SettingsPresenter: SettingsPresenterInterface {
 
     func configure(with output: Settings.ViewOutput) -> Settings.ViewInput {
         onCloseTapped(close: output.close)
-        onChangePhotoTapped(changePhoto: output.changePhoto)
+        onChangePhotoTapped(output.changePhoto)
         onLogoutTapped(logout: output.logout)
-        fetchUser()
+        let user = Driver.merge(
+            fetchUser(),
+            userPublishRelay.asDriver(onErrorDriveWith: .never())
+        )
         return Settings.ViewInput(
-            user: userPublishRelay.asDriver(onErrorDriveWith: .never())
+            user: user
         )
     }
 
@@ -59,7 +62,7 @@ extension SettingsPresenter: SettingsPresenterInterface {
             .disposed(by: disposeBag)
     }
 
-    func onChangePhotoTapped(changePhoto: Signal<Void>) {
+    func onChangePhotoTapped(_ changePhoto: Signal<Void>) {
         changePhoto
             .emit(onNext: { [unowned self] _ in
                 wireframe.openGallery(delegate: self)
@@ -76,15 +79,11 @@ extension SettingsPresenter: SettingsPresenterInterface {
             .disposed(by: disposeBag)
     }
 
-    func fetchUser() {
+    func fetchUser() -> Driver<User> {
         interactor
             .user
             .handleLoadingAndError(with: view)
             .asDriver(onErrorDriveWith: .never())
-            .drive(onNext: { [unowned self] user in
-                userPublishRelay.accept(user)
-            })
-            .disposed(by: disposeBag)
     }
 }
 
@@ -108,9 +107,7 @@ extension SettingsPresenter: UIImagePickerControllerDelegate, UINavigationContro
         _ picker: UIImagePickerController,
         didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]
     ) {
-        if let image = info[UIImagePickerController.InfoKey(
-                rawValue: "UIImagePickerControllerEditedImage"
-            )] as? UIImage {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             updateUser(with: image)
         }
         picker.dismiss(animated: true, completion: nil)
