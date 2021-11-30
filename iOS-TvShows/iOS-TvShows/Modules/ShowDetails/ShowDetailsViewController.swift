@@ -20,15 +20,40 @@ final class ShowDetailsViewController: UIViewController {
 
     // MARK: - Private properties -
 
+    private let headerView = ShowDetailsHeaderView()
+    private let tableView = UITableView()
+    private let createReviewButton = PrimaryButton()
+
     private let disposeBag = DisposeBag()
+
+    private lazy var tableDataSource: TableDataSourceDelegate = {
+        return TableDataSourceDelegate(tableView: tableView)
+    }()
 
     // MARK: - Lifecycle -
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
         setupView()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        sizeHeaderToFit()
+    }
+
+    private func sizeHeaderToFit() {
+        let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+        var frame = headerView.frame
+        frame.size.height = height
+        headerView.frame = frame
+
+        headerView.setNeedsLayout()
+        headerView.layoutIfNeeded()
+
+        tableView.tableHeaderView = headerView
+    }
 }
 
 // MARK: - Extensions -
@@ -39,10 +64,71 @@ extension ShowDetailsViewController: ShowDetailsViewInterface {
 private extension ShowDetailsViewController {
 
     func setupView() {
-        view.backgroundColor = UIColor.TVShows.appWhite
-        let output = ShowDetails.ViewOutput()
+        let output = ShowDetails.ViewOutput(
+            createReview: createReviewButton.rx.tap.asSignal()
+        )
 
         let input = presenter.configure(with: output)
+        handleShow(input.show)
+        handleReviews(input.reviews)
     }
 
+    func handleShow(_ show: Driver<Show>) {
+        show
+            .map { $0.title }
+            .drive(rx.title)
+            .disposed(by: disposeBag)
+
+        show
+            .drive(onNext: { [unowned self] show in
+                headerView.configure(with: show)
+            })
+            .disposed(by: disposeBag)
+    }
+
+    func handleReviews(_ reviews: Driver<[TableCellItem]>) {
+        reviews
+            .drive(tableDataSource.rx.items)
+            .disposed(by: disposeBag)
+    }
+}
+
+private extension ShowDetailsViewController {
+
+    func setupUI() {
+        addSubviews()
+        configureView()
+        configureSubviews()
+        defineConstraints()
+    }
+
+    func addSubviews() {
+        view.addSubview(tableView)
+        view.addSubview(createReviewButton)
+    }
+
+    func configureView() {
+        view.backgroundColor = UIColor.TVShows.appWhite
+    }
+
+    func configureSubviews() {
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.tableHeaderView = headerView
+        
+        tableView.backgroundColor = UIColor.TVShows.appWhite
+        tableView.registerClass(cellOfType: ReviewTableViewCell.self)
+        tableView.contentInsetAdjustmentBehavior = .always
+
+        createReviewButton.setTitle("Write a Review", for: .normal)
+    }
+
+    func defineConstraints() {
+        tableView.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
+        }
+        createReviewButton.snp.makeConstraints {
+            $0.top.equalTo(tableView.snp.bottom).offset(15)
+            $0.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
+    }
 }

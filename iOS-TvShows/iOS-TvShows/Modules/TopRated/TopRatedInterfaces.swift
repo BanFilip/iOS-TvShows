@@ -14,7 +14,7 @@ import RxCocoa
 
 protocol TopRatedWireframeInterface: WireframeInterface {
     func goToSettings()
-    func goToShowDetails(with model: Show)
+    func goToShowDetails(with id: String)
 }
 
 protocol TopRatedViewInterface: ViewInterface, Progressable {

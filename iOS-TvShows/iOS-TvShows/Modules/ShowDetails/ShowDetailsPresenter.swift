@@ -19,6 +19,7 @@ final class ShowDetailsPresenter {
     private unowned let view: ShowDetailsViewInterface
     private let interactor: ShowDetailsInteractorInterface
     private let wireframe: ShowDetailsWireframeInterface
+    private let disposeBag: DisposeBag
 
     // MARK: - Lifecycle -
 
@@ -30,6 +31,7 @@ final class ShowDetailsPresenter {
         self.view = view
         self.interactor = interactor
         self.wireframe = wireframe
+        self.disposeBag = DisposeBag()
     }
 }
 
@@ -38,7 +40,43 @@ final class ShowDetailsPresenter {
 extension ShowDetailsPresenter: ShowDetailsPresenterInterface {
 
     func configure(with output: ShowDetails.ViewOutput) -> ShowDetails.ViewInput {
-        return ShowDetails.ViewInput()
+        onCreateReviewTapped(output.createReview)
+        let reviews = fetchReviews()
+        let items = reviews
+            .map { [unowned self] in createItems(from: $0) }
+
+        return ShowDetails.ViewInput(
+            show: fetchShow(),
+            reviews: items.map { $0 as [TableCellItem] }
+        )
+    }
+
+    private func onCreateReviewTapped(_ createReview: Signal<Void>) {
+        createReview
+            .emit(onNext: { [unowned self] _ in
+                print("Go To Create Review")
+            })
+            .disposed(by: disposeBag)
+    }
+
+    private func fetchShow() -> Driver<Show> {
+        return interactor
+            .fetchShow()
+            .handleLoadingAndError(with: view)
+            .asDriver(onErrorDriveWith: .never())
+    }
+
+    private func fetchReviews() -> Driver<[Review]> {
+        return interactor
+            .fetchReviews()
+            .handleLoading(with: view)
+            .asDriver(onErrorJustReturn: [])
+    }
+
+    private func createItems(from reviews: [Review]) -> [ReviewTableCellItem] {
+        return reviews.map {
+            return ReviewTableCellItem(review: $0)
+        }
     }
 
 }

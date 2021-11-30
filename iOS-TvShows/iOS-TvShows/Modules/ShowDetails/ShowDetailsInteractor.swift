@@ -12,9 +12,43 @@ import Foundation
 import RxSwift
 
 final class ShowDetailsInteractor {
+
+    private let identifier: String
+    private let service: APIService
+    private let sessionManager: SessionManager
+
+    init(
+        identifier: String,
+        service: APIService = APIService.instance,
+        sessionManager: SessionManager = .default
+    ) {
+        self.identifier = identifier
+        self.service = service
+        self.sessionManager = sessionManager
+    }
 }
 
 // MARK: - Extensions -
 
 extension ShowDetailsInteractor: ShowDetailsInteractorInterface {
+
+    func fetchShow() -> Single<Show> {
+        service.rx
+            .request(
+                ShowResponse.self,
+                router: ShowsRouter.show(with: identifier),
+                session: sessionManager.session
+            )
+            .map { $0.show }
+    }
+
+    func fetchReviews() -> Single<[Review]> {
+        service.rx
+            .request(
+                ReviewsResponse.self,
+                router: ShowsRouter.reviews(with: identifier),
+                session: sessionManager.session
+            )
+            .map { $0.reviews }
+    }
 }

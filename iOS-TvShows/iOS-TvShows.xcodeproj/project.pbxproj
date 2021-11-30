@@ -41,6 +41,10 @@
 		B64AC24027540B76005854D8 /* Observable+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC23F27540B76005854D8 /* Observable+Utility.swift */; };
 		B64AC24327540D12005854D8 /* Driver+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC24227540D12005854D8 /* Driver+Utility.swift */; };
 		B64AC2452754FA4F005854D8 /* Observable+Progressable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC2442754FA4F005854D8 /* Observable+Progressable.swift */; };
+		B64AC248275509D9005854D8 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC247275509D9005854D8 /* Review.swift */; };
+		B64AC24C2755103D005854D8 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC24B2755103D005854D8 /* ReviewTableViewCell.swift */; };
+		B64AC24E27552708005854D8 /* ShowDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC24D27552708005854D8 /* ShowDetailsHeaderView.swift */; };
+		B64AC25127563C0F005854D8 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC25027563C0F005854D8 /* StarsView.swift */; };
 		B6B38526273A921200CFE02C /* LoginViewController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38525273A921200CFE02C /* LoginViewController+Design.swift */; };
 		B6B38529273A923600CFE02C /* ConstructViewsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38528273A923600CFE02C /* ConstructViewsProtocol.swift */; };
 		B6B38530273A955200CFE02C /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B3852F273A955200CFE02C /* UINavigationController+Extensions.swift */; };
@@ -154,6 +158,10 @@
 		B64AC23F27540B76005854D8 /* Observable+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Utility.swift"; sourceTree = "<group>"; };
 		B64AC24227540D12005854D8 /* Driver+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Driver+Utility.swift"; sourceTree = "<group>"; };
 		B64AC2442754FA4F005854D8 /* Observable+Progressable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Progressable.swift"; sourceTree = "<group>"; };
+		B64AC247275509D9005854D8 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		B64AC24B2755103D005854D8 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
+		B64AC24D27552708005854D8 /* ShowDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsHeaderView.swift; sourceTree = "<group>"; };
+		B64AC25027563C0F005854D8 /* StarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
 		B6B38523273A743300CFE02C /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extensions.swift"; sourceTree = "<group>"; };
 		B6B38525273A921200CFE02C /* LoginViewController+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Design.swift"; sourceTree = "<group>"; };
 		B6B38528273A923600CFE02C /* ConstructViewsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructViewsProtocol.swift; sourceTree = "<group>"; };
@@ -339,11 +347,13 @@
 		B616B9ED274E7FDD00676A32 /* ShowDetails */ = {
 			isa = PBXGroup;
 			children = (
+				B616B9F1274E7FF200676A32 /* ShowDetailsInteractor.swift */,
 				B616B9EE274E7FF200676A32 /* ShowDetailsInterfaces.swift */,
 				B616B9EF274E7FF200676A32 /* ShowDetailsPresenter.swift */,
 				B616B9F0274E7FF200676A32 /* ShowDetailsViewController.swift */,
-				B616B9F1274E7FF200676A32 /* ShowDetailsInteractor.swift */,
 				B616B9F2274E7FF200676A32 /* ShowDetailsWireframe.swift */,
+				B64AC24927550FBB005854D8 /* Components */,
+				B64AC246275509C7005854D8 /* Models */,
 			);
 			path = ShowDetails;
 			sourceTree = "<group>";
@@ -396,6 +406,48 @@
 				B64AC24227540D12005854D8 /* Driver+Utility.swift */,
 			);
 			path = Driver;
+			sourceTree = "<group>";
+		};
+		B64AC246275509C7005854D8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B64AC247275509D9005854D8 /* Review.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B64AC24927550FBB005854D8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B64AC25327564BE0005854D8 /* ShowDetailsHeaderView */,
+				B64AC24F27563BFF005854D8 /* StarsView */,
+				B64AC24A27551027005854D8 /* TableViewCell */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		B64AC24A27551027005854D8 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B64AC24B2755103D005854D8 /* ReviewTableViewCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		B64AC24F27563BFF005854D8 /* StarsView */ = {
+			isa = PBXGroup;
+			children = (
+				B64AC25027563C0F005854D8 /* StarsView.swift */,
+			);
+			path = StarsView;
+			sourceTree = "<group>";
+		};
+		B64AC25327564BE0005854D8 /* ShowDetailsHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				B64AC24D27552708005854D8 /* ShowDetailsHeaderView.swift */,
+			);
+			path = ShowDetailsHeaderView;
 			sourceTree = "<group>";
 		};
 		B6B38527273A922600CFE02C /* UI */ = {
@@ -941,6 +993,7 @@
 				B6C90E282743B70600504E73 /* URLRequest+Extensions.swift in Sources */,
 				B616B9F7274E7FF200676A32 /* ShowDetailsWireframe.swift in Sources */,
 				B6C90E272743B6FF00504E73 /* PresenterInterface.swift in Sources */,
+				B64AC24C2755103D005854D8 /* ReviewTableViewCell.swift in Sources */,
 				B616B9C6274E568100676A32 /* ShowsRouter.swift in Sources */,
 				B6C90E262743B6F800504E73 /* InteractorInterface.swift in Sources */,
 				B6C90E252743B6EA00504E73 /* LoginInterfaces.swift in Sources */,
@@ -982,6 +1035,7 @@
 				B616B9F6274E7FF200676A32 /* ShowDetailsInteractor.swift in Sources */,
 				B616B9DD274E615D00676A32 /* TableViewReloader.swift in Sources */,
 				B6B385F9273C433300CFE02C /* PrimaryButton.swift in Sources */,
+				B64AC24E27552708005854D8 /* ShowDetailsHeaderView.swift in Sources */,
 				B6B3854D273A992F00CFE02C /* UILabel+Extensions.swift in Sources */,
 				B6C90E3D2743BADD00504E73 /* Driver+Progressable.swift in Sources */,
 				B6B38610273C4BFD00CFE02C /* TextFieldType.swift in Sources */,
@@ -997,6 +1051,7 @@
 				B6B3860A273C49F500CFE02C /* SeparatorView+Design.swift in Sources */,
 				B6C90E3F2743BB4600504E73 /* String+Extensions.swift in Sources */,
 				B616B9D6274E611200676A32 /* BlankTableSection.swift in Sources */,
+				B64AC248275509D9005854D8 /* Review.swift in Sources */,
 				B64AC23D27540B3C005854D8 /* Paging.swift in Sources */,
 				B6B3855D273AAC2B00CFE02C /* UIView+Extensions.swift in Sources */,
 				B616BA03274FCB0600676A32 /* HomeWireframe.swift in Sources */,
@@ -1035,6 +1090,7 @@
 				B6E2A48B274D28B800BB07F4 /* SettingsPresenter.swift in Sources */,
 				B6E2A470274CDBD400BB07F4 /* TopRatedPresenter.swift in Sources */,
 				B6C90E1527428B0B00504E73 /* UIColorExtension.swift in Sources */,
+				B64AC25127563C0F005854D8 /* StarsView.swift in Sources */,
 				B6B38608273C49C900CFE02C /* SeparatorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

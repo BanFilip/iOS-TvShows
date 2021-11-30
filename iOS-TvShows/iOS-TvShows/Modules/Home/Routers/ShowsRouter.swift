@@ -33,4 +33,12 @@ class ShowsRouter: Router {
             parameters: params
         )
     }
+
+    static func reviews(with id: String) -> ShowsRouter {
+        return ShowsRouter(
+            path: "/shows/\(id)/reviews",
+            method: .get,
+            encoding: URLEncoding.default
+        )
+    }
 }

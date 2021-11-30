@@ -43,7 +43,7 @@ extension TopRatedPresenter: TopRatedPresenterInterface {
         onSettingsTapped(output.settings)
         let shows = fetchShows()
         let items = shows
-            .map { [unowned self] in createItems(from: $0)}
+            .map { [unowned self] in createItems(from: $0) }
 
         return TopRated.ViewInput(
             shows: items.map { $0 as [TableCellItem] }
@@ -69,7 +69,7 @@ extension TopRatedPresenter: TopRatedPresenterInterface {
         return shows.map {
             return ShowTableCellItem(
                 show: $0,
-                didSelect: { [unowned self] in wireframe.goToShowDetails(with: $0.show) })
+                didSelect: { [unowned self] in wireframe.goToShowDetails(with: $0.show.id) })
         }
     }
 }

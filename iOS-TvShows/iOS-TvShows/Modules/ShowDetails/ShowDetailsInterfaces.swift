@@ -15,7 +15,7 @@ import RxCocoa
 protocol ShowDetailsWireframeInterface: WireframeInterface {
 }
 
-protocol ShowDetailsViewInterface: ViewInterface {
+protocol ShowDetailsViewInterface: ViewInterface, Progressable {
 }
 
 protocol ShowDetailsPresenterInterface: PresenterInterface {
@@ -23,14 +23,19 @@ protocol ShowDetailsPresenterInterface: PresenterInterface {
 }
 
 protocol ShowDetailsInteractorInterface: InteractorInterface {
+    func fetchShow() -> Single<Show>
+    func fetchReviews() -> Single<[Review]>
 }
 
 enum ShowDetails {
 
     struct ViewOutput {
+        let createReview: Signal<Void>
     }
 
     struct ViewInput {
+        let show: Driver<Show>
+        let reviews: Driver<[TableCellItem]>
     }
 
 }
