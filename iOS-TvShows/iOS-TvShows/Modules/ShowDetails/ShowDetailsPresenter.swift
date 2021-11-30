@@ -41,9 +41,17 @@ extension ShowDetailsPresenter: ShowDetailsPresenterInterface {
 
     func configure(with output: ShowDetails.ViewOutput) -> ShowDetails.ViewInput {
         onCreateReviewTapped(output.createReview)
-        let reviews = fetchReviews()
-        let items = reviews
+
+        let paginatedReviews = interactor
+            .reviewsPaging(
+                loadNextPage: output.willDisplayLastCell,
+                reload: output.pullToRefresh
+            )
+            .handleLoadingAndError(with: view)
+
+        let items = paginatedReviews
             .map { [unowned self] in createItems(from: $0) }
+            .asDriver(onErrorJustReturn: [])
 
         return ShowDetails.ViewInput(
             show: fetchShow(),
@@ -66,17 +74,9 @@ extension ShowDetailsPresenter: ShowDetailsPresenterInterface {
             .asDriver(onErrorDriveWith: .never())
     }
 
-    private func fetchReviews() -> Driver<[Review]> {
-        return interactor
-            .fetchReviews()
-            .handleLoading(with: view)
-            .asDriver(onErrorJustReturn: [])
-    }
-
     private func createItems(from reviews: [Review]) -> [ReviewTableCellItem] {
         return reviews.map {
             return ReviewTableCellItem(review: $0)
         }
     }
-
 }

@@ -24,13 +24,15 @@ protocol ShowDetailsPresenterInterface: PresenterInterface {
 
 protocol ShowDetailsInteractorInterface: InteractorInterface {
     func fetchShow() -> Single<Show>
-    func fetchReviews() -> Single<[Review]>
+    func reviewsPaging(loadNextPage: Driver<Void>, reload: Driver<Void>) -> Observable<[Review]>
 }
 
 enum ShowDetails {
 
     struct ViewOutput {
         let createReview: Signal<Void>
+        let pullToRefresh: Driver<Void>
+        let willDisplayLastCell: Driver<Void>
     }
 
     struct ViewInput {

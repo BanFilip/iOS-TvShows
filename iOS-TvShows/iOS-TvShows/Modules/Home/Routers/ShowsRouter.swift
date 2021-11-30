@@ -34,11 +34,11 @@ class ShowsRouter: Router {
         )
     }
 
-    static func reviews(with id: String) -> ShowsRouter {
+    static func reviews(with id: String, params: [String: Int]) -> ShowsRouter {
         return ShowsRouter(
             path: "/shows/\(id)/reviews",
             method: .get,
-            encoding: URLEncoding.default
+            parameters: params
         )
     }
 }

@@ -10,6 +10,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 final class ShowDetailsInteractor {
 
@@ -41,14 +42,58 @@ extension ShowDetailsInteractor: ShowDetailsInteractorInterface {
             )
             .map { $0.show }
     }
+}
 
-    func fetchReviews() -> Single<[Review]> {
-        service.rx
+extension ShowDetailsInteractor {
+
+    typealias Container = [Review]
+    typealias Page = ReviewsResponse
+    typealias PagingEvent = Paging.Event<Container>
+
+    func reviewsPaging(loadNextPage: Driver<Void>, reload: Driver<Void>) -> Observable<[Review]> {
+        let events = Driver
+            .merge(
+                loadNextPage.mapTo(PagingEvent.nextPage),
+                reload.startWith(()).mapTo(PagingEvent.reload)
+            )
+
+        func nextPage(container: Container, lastPage: Page?) -> Single<Page> {
+            return reviews(with: lastPage?.pagination)
+        }
+
+        func accumulator(_ container: Container, _ page: Page) -> Container {
+            return container + page.reviews
+        }
+
+        func hasNext(container: Container, lastPage: Page) -> Bool {
+            return lastPage.pagination.page < lastPage.pagination.pages
+        }
+
+        return Paging
+            .page(
+                make: nextPage,
+                startingWith: [],
+                joining: accumulator,
+                while: hasNext,
+                on: events.asObservable()
+            )
+            .map { $0.container }
+    }
+
+    private func reviews(with pagination: Pagination?) -> Single<ReviewsResponse> {
+        var params: [String: Int] = [:]
+        if let lastPage = pagination {
+            params = [
+                "page": lastPage.page + 1,
+                "items": lastPage.items
+            ]
+        }
+        return service.rx
             .request(
                 ReviewsResponse.self,
-                router: ShowsRouter.reviews(with: identifier),
+                router: ShowsRouter.reviews(with: identifier, params: params),
                 session: sessionManager.session
             )
-            .map { $0.reviews }
     }
 }
+

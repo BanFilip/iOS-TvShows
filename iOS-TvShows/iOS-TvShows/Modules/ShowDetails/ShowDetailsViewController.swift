@@ -12,9 +12,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class ShowDetailsViewController: UIViewController {
+final class ShowDetailsViewController: UIViewController, Refreshable {
 
     // MARK: - Public properties -
+
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        tableView.refreshControl = refreshControl
+        return refreshControl
+    }()
 
     var presenter: ShowDetailsPresenterInterface!
 
@@ -64,8 +70,17 @@ extension ShowDetailsViewController: ShowDetailsViewInterface {
 private extension ShowDetailsViewController {
 
     func setupView() {
+        let pullToRefresh = refreshControl.rx
+            .controlEvent(.valueChanged)
+            .asDriver()
+            .mapToVoid()
+        let willDisplayLastCell = tableView.rx
+            .reachedBottomOnceWith(restart: pullToRefresh)
+
         let output = ShowDetails.ViewOutput(
-            createReview: createReviewButton.rx.tap.asSignal()
+            createReview: createReviewButton.rx.tap.asSignal(),
+            pullToRefresh: pullToRefresh,
+            willDisplayLastCell: willDisplayLastCell
         )
 
         let input = presenter.configure(with: output)
@@ -88,6 +103,7 @@ private extension ShowDetailsViewController {
 
     func handleReviews(_ reviews: Driver<[TableCellItem]>) {
         reviews
+            .do(onNext: { [unowned self] _ in self.endRefreshing() })
             .drive(tableDataSource.rx.items)
             .disposed(by: disposeBag)
     }
@@ -109,6 +125,7 @@ private extension ShowDetailsViewController {
 
     func configureView() {
         view.backgroundColor = UIColor.TVShows.appWhite
+        extendedLayoutIncludesOpaqueBars = true
     }
 
     func configureSubviews() {
@@ -123,6 +140,7 @@ private extension ShowDetailsViewController {
     }
 
     func defineConstraints() {
+        tableView.contentInsetAdjustmentBehavior = .always
         tableView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
         }
