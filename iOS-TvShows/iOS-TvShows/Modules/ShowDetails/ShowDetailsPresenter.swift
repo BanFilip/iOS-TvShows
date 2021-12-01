@@ -54,7 +54,7 @@ extension ShowDetailsPresenter: ShowDetailsPresenterInterface {
             .asDriver(onErrorJustReturn: [])
 
         return ShowDetails.ViewInput(
-            show: fetchShow(),
+            show: show(reload: output.pullToRefresh.startWith(())),
             reviews: items.map { $0 as [TableCellItem] }
         )
     }
@@ -62,13 +62,20 @@ extension ShowDetailsPresenter: ShowDetailsPresenterInterface {
     private func onCreateReviewTapped(_ createReview: Signal<Void>) {
         createReview
             .emit(onNext: { [unowned self] _ in
-                print("Go To Create Review")
+                wireframe.goToSubmitReview()
             })
             .disposed(by: disposeBag)
     }
 
+    private func show(reload: Driver<Void>) -> Driver<Show> {
+        reload
+            .flatMapLatest { [unowned self] _ -> Driver<Show> in
+                fetchShow()
+            }
+    }
+
     private func fetchShow() -> Driver<Show> {
-        return interactor
+        interactor
             .fetchShow()
             .handleLoadingAndError(with: view)
             .asDriver(onErrorDriveWith: .never())

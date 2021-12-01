@@ -45,6 +45,12 @@
 		B64AC24C2755103D005854D8 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC24B2755103D005854D8 /* ReviewTableViewCell.swift */; };
 		B64AC24E27552708005854D8 /* ShowDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC24D27552708005854D8 /* ShowDetailsHeaderView.swift */; };
 		B64AC25127563C0F005854D8 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC25027563C0F005854D8 /* StarsView.swift */; };
+		B64AC25A27565E85005854D8 /* ReviewInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC25527565E85005854D8 /* ReviewInterfaces.swift */; };
+		B64AC25B27565E85005854D8 /* ReviewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC25627565E85005854D8 /* ReviewPresenter.swift */; };
+		B64AC25C27565E85005854D8 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC25727565E85005854D8 /* ReviewViewController.swift */; };
+		B64AC25D27565E85005854D8 /* ReviewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC25827565E85005854D8 /* ReviewInteractor.swift */; };
+		B64AC25E27565E85005854D8 /* ReviewWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC25927565E85005854D8 /* ReviewWireframe.swift */; };
+		B64AC26127565F49005854D8 /* ReviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64AC26027565F49005854D8 /* ReviewRouter.swift */; };
 		B6B38526273A921200CFE02C /* LoginViewController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38525273A921200CFE02C /* LoginViewController+Design.swift */; };
 		B6B38529273A923600CFE02C /* ConstructViewsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B38528273A923600CFE02C /* ConstructViewsProtocol.swift */; };
 		B6B38530273A955200CFE02C /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B3852F273A955200CFE02C /* UINavigationController+Extensions.swift */; };
@@ -162,6 +168,12 @@
 		B64AC24B2755103D005854D8 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		B64AC24D27552708005854D8 /* ShowDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsHeaderView.swift; sourceTree = "<group>"; };
 		B64AC25027563C0F005854D8 /* StarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
+		B64AC25527565E85005854D8 /* ReviewInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewInterfaces.swift; sourceTree = "<group>"; };
+		B64AC25627565E85005854D8 /* ReviewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPresenter.swift; sourceTree = "<group>"; };
+		B64AC25727565E85005854D8 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		B64AC25827565E85005854D8 /* ReviewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewInteractor.swift; sourceTree = "<group>"; };
+		B64AC25927565E85005854D8 /* ReviewWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewWireframe.swift; sourceTree = "<group>"; };
+		B64AC26027565F49005854D8 /* ReviewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRouter.swift; sourceTree = "<group>"; };
 		B6B38523273A743300CFE02C /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extensions.swift"; sourceTree = "<group>"; };
 		B6B38525273A921200CFE02C /* LoginViewController+Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Design.swift"; sourceTree = "<group>"; };
 		B6B38528273A923600CFE02C /* ConstructViewsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructViewsProtocol.swift; sourceTree = "<group>"; };
@@ -450,6 +462,27 @@
 			path = ShowDetailsHeaderView;
 			sourceTree = "<group>";
 		};
+		B64AC25427565E69005854D8 /* Review */ = {
+			isa = PBXGroup;
+			children = (
+				B64AC25827565E85005854D8 /* ReviewInteractor.swift */,
+				B64AC25527565E85005854D8 /* ReviewInterfaces.swift */,
+				B64AC25627565E85005854D8 /* ReviewPresenter.swift */,
+				B64AC25727565E85005854D8 /* ReviewViewController.swift */,
+				B64AC25927565E85005854D8 /* ReviewWireframe.swift */,
+				B64AC25F27565F3A005854D8 /* Router */,
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		B64AC25F27565F3A005854D8 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				B64AC26027565F49005854D8 /* ReviewRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		B6B38527273A922600CFE02C /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -725,6 +758,7 @@
 			children = (
 				B6C90E2B2743BA4700504E73 /* Home */,
 				B6E71C4027393D75009123A3 /* Login */,
+				B64AC25427565E69005854D8 /* Review */,
 				B6E2A484274D28A400BB07F4 /* Settings */,
 				B616B9ED274E7FDD00676A32 /* ShowDetails */,
 				B6E2A45E274CDBA900BB07F4 /* Shows */,
@@ -990,12 +1024,14 @@
 				B6C90E2A2743B71300504E73 /* LoginWireframe.swift in Sources */,
 				B616B9D2274E60EC00676A32 /* TableCellItem.swift in Sources */,
 				B6C90E292743B71000504E73 /* LoginViewController.swift in Sources */,
+				B64AC26127565F49005854D8 /* ReviewRouter.swift in Sources */,
 				B6C90E282743B70600504E73 /* URLRequest+Extensions.swift in Sources */,
 				B616B9F7274E7FF200676A32 /* ShowDetailsWireframe.swift in Sources */,
 				B6C90E272743B6FF00504E73 /* PresenterInterface.swift in Sources */,
 				B64AC24C2755103D005854D8 /* ReviewTableViewCell.swift in Sources */,
 				B616B9C6274E568100676A32 /* ShowsRouter.swift in Sources */,
 				B6C90E262743B6F800504E73 /* InteractorInterface.swift in Sources */,
+				B64AC25E27565E85005854D8 /* ReviewWireframe.swift in Sources */,
 				B6C90E252743B6EA00504E73 /* LoginInterfaces.swift in Sources */,
 				B6C90E3A2743BABE00504E73 /* Single+Progressable.swift in Sources */,
 				B6C90E242743B6D200504E73 /* UIStoryboardExtension.swift in Sources */,
@@ -1014,6 +1050,7 @@
 				B6B38529273A923600CFE02C /* ConstructViewsProtocol.swift in Sources */,
 				B616B9F4274E7FF200676A32 /* ShowDetailsPresenter.swift in Sources */,
 				B6C90E1A27428DF700504E73 /* KeyboardHandler.swift in Sources */,
+				B64AC25B27565E85005854D8 /* ReviewPresenter.swift in Sources */,
 				B616B9E1274E619800676A32 /* ItemConfigurable.swift in Sources */,
 				B616B9DA274E614400676A32 /* AssociableTableCellItem.swift in Sources */,
 				B6B38617273C4C9A00CFE02C /* BaseTextField.swift in Sources */,
@@ -1021,6 +1058,7 @@
 				B6C90E332743BA5400504E73 /* HomeTabBarController.swift in Sources */,
 				B616B9D4274E610000676A32 /* TableSectionItem.swift in Sources */,
 				B6E2A465274CDBC600BB07F4 /* ShowsInterfaces.swift in Sources */,
+				B64AC25C27565E85005854D8 /* ReviewViewController.swift in Sources */,
 				B6E2A48D274D28B800BB07F4 /* SettingsInteractor.swift in Sources */,
 				B616BA00274FCB0600676A32 /* HomePresenter.swift in Sources */,
 				B6E2A48C274D28B800BB07F4 /* SettingsViewController.swift in Sources */,
@@ -1028,7 +1066,9 @@
 				B616B9EC274E650E00676A32 /* Rx+DataSourceDelegate.swift in Sources */,
 				B6C90E372743BA8A00504E73 /* Progressable.swift in Sources */,
 				B616B9E8274E621900676A32 /* UITableView+Dequeue.swift in Sources */,
+				B64AC25D27565E85005854D8 /* ReviewInteractor.swift in Sources */,
 				B6E2A46F274CDBD400BB07F4 /* TopRatedInterfaces.swift in Sources */,
+				B64AC25A27565E85005854D8 /* ReviewInterfaces.swift in Sources */,
 				B616BA06274FDCB400676A32 /* User.swift in Sources */,
 				B616B9DF274E617500676A32 /* SimpleAnimationTableViewReloader.swift in Sources */,
 				B6E2A472274CDBD400BB07F4 /* TopRatedInteractor.swift in Sources */,

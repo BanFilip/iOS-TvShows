@@ -91,7 +91,7 @@ extension ShowDetailsInteractor {
         return service.rx
             .request(
                 ReviewsResponse.self,
-                router: ShowsRouter.reviews(with: identifier, params: params),
+                router: ReviewRouter.reviews(with: identifier, params: params),
                 session: sessionManager.session
             )
     }
