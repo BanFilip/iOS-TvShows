@@ -70,7 +70,7 @@ extension ShowsPresenter: ShowsPresenterInterface {
         return shows.map {
             return ShowTableCellItem(
                 show: $0,
-                didSelect: { [unowned self] in wireframe.goToShowDetails(with: $0.show) }
+                didSelect: { [unowned self] in wireframe.goToShowDetails(with: $0.show.id) }
             )
         }
     }

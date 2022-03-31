@@ -14,9 +14,10 @@ import RxCocoa
 
 protocol TopRatedWireframeInterface: WireframeInterface {
     func goToSettings()
+    func goToShowDetails(with id: String)
 }
 
-protocol TopRatedViewInterface: ViewInterface {
+protocol TopRatedViewInterface: ViewInterface, Progressable {
 }
 
 protocol TopRatedPresenterInterface: PresenterInterface {
@@ -24,6 +25,7 @@ protocol TopRatedPresenterInterface: PresenterInterface {
 }
 
 protocol TopRatedInteractorInterface: InteractorInterface {
+    func fetchShows() -> Single<[Show]>
 }
 
 enum TopRated {
@@ -33,6 +35,7 @@ enum TopRated {
     }
 
     struct ViewInput {
+        let shows: Driver<[TableCellItem]>
     }
 
 }

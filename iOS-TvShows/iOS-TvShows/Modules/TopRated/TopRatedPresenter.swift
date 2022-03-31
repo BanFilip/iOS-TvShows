@@ -40,11 +40,17 @@ final class TopRatedPresenter {
 extension TopRatedPresenter: TopRatedPresenterInterface {
 
     func configure(with output: TopRated.ViewOutput) -> TopRated.ViewInput {
-        handle(settings: output.settings)
-        return TopRated.ViewInput()
+        onSettingsTapped(output.settings)
+        let shows = fetchShows()
+        let items = shows
+            .map { [unowned self] in createItems(from: $0) }
+
+        return TopRated.ViewInput(
+            shows: items.map { $0 as [TableCellItem] }
+        )
     }
 
-    func handle(settings: Signal<Void>) {
+    func onSettingsTapped(_ settings: Signal<Void>) {
         settings
             .emit(onNext: { [unowned self] _ in
                 wireframe.goToSettings()
@@ -52,4 +58,21 @@ extension TopRatedPresenter: TopRatedPresenterInterface {
             .disposed(by: disposeBag)
     }
 
+    func fetchShows() -> Driver<[Show]> {
+        return interactor
+            .fetchShows()
+            .handleLoadingAndError(with: view)
+            .asDriver(onErrorJustReturn: [])
+    }
+
+    func createItems(from shows: [Show]) -> [ShowTableCellItem] {
+        return shows.map {
+            return ShowTableCellItem(
+                show: $0,
+                didSelect: { [unowned self] in wireframe.goToShowDetails(with: $0.show.id) })
+        }
+    }
 }
+
+
+

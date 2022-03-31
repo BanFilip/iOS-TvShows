@@ -74,6 +74,7 @@ private extension ShowTableViewCell {
     }
 
     func configureSubviews() {
+        label.textColor = .black
         customImageView.clipsToBounds = true
         customImageView.roundAllCorners(withRadius: 4)
     }

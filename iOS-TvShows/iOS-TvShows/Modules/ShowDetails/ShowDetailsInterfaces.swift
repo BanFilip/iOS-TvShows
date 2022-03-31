@@ -13,9 +13,10 @@ import RxSwift
 import RxCocoa
 
 protocol ShowDetailsWireframeInterface: WireframeInterface {
+    func goToSubmitReview()
 }
 
-protocol ShowDetailsViewInterface: ViewInterface {
+protocol ShowDetailsViewInterface: ViewInterface, Progressable {
 }
 
 protocol ShowDetailsPresenterInterface: PresenterInterface {
@@ -23,14 +24,21 @@ protocol ShowDetailsPresenterInterface: PresenterInterface {
 }
 
 protocol ShowDetailsInteractorInterface: InteractorInterface {
+    func fetchShow() -> Single<Show>
+    func reviewsPaging(loadNextPage: Driver<Void>, reload: Driver<Void>) -> Observable<[Review]>
 }
 
 enum ShowDetails {
 
     struct ViewOutput {
+        let createReview: Signal<Void>
+        let pullToRefresh: Driver<Void>
+        let willDisplayLastCell: Driver<Void>
     }
 
     struct ViewInput {
+        let show: Driver<Show>
+        let reviews: Driver<[TableCellItem]>
     }
 
 }

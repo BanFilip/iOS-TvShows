@@ -40,7 +40,7 @@ extension ShowsWireframe: ShowsWireframeInterface {
         )
     }
 
-    func goToShowDetails(with model: Show) {
-        navigationController?.pushWireframe(ShowDetailsWireframe(with: model))
+    func goToShowDetails(with id: String) {
+        navigationController?.pushWireframe(ShowDetailsWireframe(with: id))
     }
 }

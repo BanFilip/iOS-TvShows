@@ -19,6 +19,7 @@ final class ShowDetailsPresenter {
     private unowned let view: ShowDetailsViewInterface
     private let interactor: ShowDetailsInteractorInterface
     private let wireframe: ShowDetailsWireframeInterface
+    private let disposeBag: DisposeBag
 
     // MARK: - Lifecycle -
 
@@ -30,6 +31,7 @@ final class ShowDetailsPresenter {
         self.view = view
         self.interactor = interactor
         self.wireframe = wireframe
+        self.disposeBag = DisposeBag()
     }
 }
 
@@ -38,7 +40,50 @@ final class ShowDetailsPresenter {
 extension ShowDetailsPresenter: ShowDetailsPresenterInterface {
 
     func configure(with output: ShowDetails.ViewOutput) -> ShowDetails.ViewInput {
-        return ShowDetails.ViewInput()
+        onCreateReviewTapped(output.createReview)
+
+        let paginatedReviews = interactor
+            .reviewsPaging(
+                loadNextPage: output.willDisplayLastCell,
+                reload: output.pullToRefresh
+            )
+            .handleLoadingAndError(with: view)
+
+        let items = paginatedReviews
+            .map { [unowned self] in createItems(from: $0) }
+            .asDriver(onErrorJustReturn: [])
+
+        return ShowDetails.ViewInput(
+            show: show(reload: output.pullToRefresh.startWith(())),
+            reviews: items.map { $0 as [TableCellItem] }
+        )
     }
 
+    private func onCreateReviewTapped(_ createReview: Signal<Void>) {
+        createReview
+            .emit(onNext: { [unowned self] _ in
+                wireframe.goToSubmitReview()
+            })
+            .disposed(by: disposeBag)
+    }
+
+    private func show(reload: Driver<Void>) -> Driver<Show> {
+        reload
+            .flatMapLatest { [unowned self] _ -> Driver<Show> in
+                fetchShow()
+            }
+    }
+
+    private func fetchShow() -> Driver<Show> {
+        interactor
+            .fetchShow()
+            .handleLoadingAndError(with: view)
+            .asDriver(onErrorDriveWith: .never())
+    }
+
+    private func createItems(from reviews: [Review]) -> [ReviewTableCellItem] {
+        return reviews.map {
+            return ReviewTableCellItem(review: $0)
+        }
+    }
 }

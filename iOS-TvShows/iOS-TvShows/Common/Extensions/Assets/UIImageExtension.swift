@@ -18,6 +18,8 @@ extension UIImage.TVShows {
         static var settings: UIImage { return UIImage(named: "Icons/settings", in: .main, compatibleWith: nil)! }
         static var showPlaceholder: UIImage { return UIImage(named: "Icons/ic-show-placeholder", in: .main, compatibleWith: nil)! }
         static var profilePlaceholder: UIImage { return UIImage(named: "Icons/ic-profile-placeholder", in: .main, compatibleWith: nil)! }
+        static var starSelected: UIImage { return UIImage(named: "Icons/ic-star-selected", in: .main, compatibleWith: nil)! }
+        static var starDeselected: UIImage { return UIImage(named: "Icons/ic-star-deselected", in: .main, compatibleWith: nil)! }
 	}
 
 	static var loginBackground: UIImage { return UIImage(named: "loginBackground", in: .main, compatibleWith: nil)! }
