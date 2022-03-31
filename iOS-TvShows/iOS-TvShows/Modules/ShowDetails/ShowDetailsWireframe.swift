@@ -16,10 +16,13 @@ final class ShowDetailsWireframe: BaseWireframe<ShowDetailsViewController> {
 
     // MARK: - Private properties -
 
+    private let identifier: String
+
     // MARK: - Module setup -
 
     init(with id: String) {
         let moduleViewController = ShowDetailsViewController()
+        identifier = id
         super.init(viewController: moduleViewController)
 
         let interactor = ShowDetailsInteractor(identifier: id)
@@ -32,4 +35,12 @@ final class ShowDetailsWireframe: BaseWireframe<ShowDetailsViewController> {
 // MARK: - Extensions -
 
 extension ShowDetailsWireframe: ShowDetailsWireframeInterface {
+
+    func goToSubmitReview() {
+        navigationController?.present(
+            UINavigationController(rootViewController: ReviewWireframe(with: identifier).viewController),
+            animated: true,
+            completion: nil
+        )
+    }
 }

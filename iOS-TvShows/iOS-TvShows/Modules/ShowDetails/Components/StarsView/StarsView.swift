@@ -10,9 +10,9 @@ import RxCocoa
 
 class StarsView: UIView {
 
-    private let stackView = UIStackView()
+    let tapBehaviorRelay = BehaviorRelay<Int?>(value: nil)
 
-    private let tapPublishRelay = PublishRelay<Int>()
+    private let stackView = UIStackView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,12 +46,12 @@ extension StarsView {
 
     private func configureView() {
         backgroundColor = .clear
+        isUserInteractionEnabled = false
     }
 
     private func configureSubviews() {
         stackView.axis = .horizontal
         stackView.distribution = .fill
-        stackView.isUserInteractionEnabled = false
     }
 
     private func defineConstraints() {
@@ -67,14 +67,16 @@ extension StarsView {
 
             button.setImage(UIImage.TVShows.Icons.starDeselected, for: .normal)
             button.setImage(UIImage.TVShows.Icons.starSelected, for: .selected)
+            button.setImage(UIImage.TVShows.Icons.starSelected, for: .highlighted)
             button.addTarget(self, action: #selector(onStarTapped), for: .touchUpInside)
+            button.adjustsImageWhenHighlighted = false
             button.tag = value
         }
     }
 
     @objc
     private func onStarTapped(_ sender: UIButton) {
-        tapPublishRelay.accept(sender.tag)
+        tapBehaviorRelay.accept(sender.tag)
         configureStars(numOfSelected: sender.tag)
     }
 }

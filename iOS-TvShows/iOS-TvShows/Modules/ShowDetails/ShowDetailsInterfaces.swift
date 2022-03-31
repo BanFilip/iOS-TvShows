@@ -13,6 +13,7 @@ import RxSwift
 import RxCocoa
 
 protocol ShowDetailsWireframeInterface: WireframeInterface {
+    func goToSubmitReview()
 }
 
 protocol ShowDetailsViewInterface: ViewInterface, Progressable {
